@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='2T2019-Localizacion-de-guardias-para-denuncias'
