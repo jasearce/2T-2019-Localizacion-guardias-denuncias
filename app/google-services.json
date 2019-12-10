@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "746362202841",
+    "firebase_url": "https://t2019-localizacion-de-guardia.firebaseio.com",
+    "project_id": "t2019-localizacion-de-guardia",
+    "storage_bucket": "t2019-localizacion-de-guardia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746362202841:android:2e7bc258f2bc62f37b2cc8",
+        "android_client_info": {
+          "package_name": "com.example.a2t2019_localizacion_de_guardias_para_denuncias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746362202841-ldo239as44c1rs90krp483lhmib2qu33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.a2t2019_localizacion_de_guardias_para_denuncias",
+            "certificate_hash": "ad184c258e4abb47f34438b821ae5ffaf624f783"
+          }
+        },
+        {
+          "client_id": "746362202841-pg78l0ah0k9erjmknt74f5mmpb26f3f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEBIAtf-j0Eht6Eswt3GEs3He3YtD_vqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746362202841-pg78l0ah0k9erjmknt74f5mmpb26f3f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
