@@ -1,22 +1,27 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +39,21 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        Intent intent = getIntent();
+        String msg = intent.getStringExtra("msg");
+        if(msg != null){
+            if(msg.equals("cerrarSesion")){
+                cerrarSesion();
+            }
+        }
+    }
+
+    /**
+     * Funcion cerrarSesion que tiene como objetivo borrar los datos de la sesion de
+     * Google
+     */
+    private void cerrarSesion() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> updateUI(null));
     }
 
     /**
@@ -82,27 +102,37 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = mAuth.getCurrentUser();
                 updateUI(user);
             } else {
-                System.out.println("error");
+                System.out.println("No se pudo iniciar sesion...");
                 updateUI(null);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     /**
      * Funcion updateUI la cual obtiene los datos del usuario en Firebase
-     * e imprime por consola el nombre del usuario que ingresa
+     * para luego empezar la actividad de perfil de usuario y pasamos la informacion
+     * desde el inicio de sesion de Google
      * @param user
      */
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String photo = String.valueOf(user.getPhotoUrl());
+            HashMap<String, String> info_user = new HashMap<String, String>();
+            info_user.put("user_name", user.getDisplayName());
+            info_user.put("user_email", user.getEmail());
+            info_user.put("user_photo", String.valueOf(user.getPhotoUrl()));
+            info_user.put("user_id", user.getUid());
 
-            System.out.println("Nombre");
-            System.out.println(name);
+            finish();
+            Intent intent = new Intent(this, PerfilUsuario.class);
+            intent.putExtra("info_user", info_user);
+            startActivity(intent);
         } else {
-            System.out.println("Sin registrarse");
+            System.out.println("sin registrarse");
         }
     }
 }
