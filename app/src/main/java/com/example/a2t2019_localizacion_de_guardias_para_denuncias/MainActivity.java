@@ -1,34 +1,30 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.util.HashMap;
-
 public class MainActivity extends AppCompatActivity {
 
+    //Varibales públicas
     static final int GOOGLE_SIGN_IN = 123;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
 
+
+    /*En la función onCreate (Función que se ejecuta al momento de iniciar la acción), instanciamos la configuración de inicio de Google y firebase*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,40 +34,20 @@ public class MainActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
-        Intent intent = getIntent();
-        String msg = intent.getStringExtra("msg");
-        if(msg != null){
-            if(msg.equals("cerrarSesion")){
-                cerrarSesion();
-            }
-        }
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-    /**
-     * Funcion cerrarSesion que tiene como objetivo borrar los datos de la sesion de
-     * Google
+    /*Creamos la función pública de iniciar sesión dentro de la clase publica MainActivity.
+     *Dentro de esta función llamaremos al inicio de sesión por Google.
      */
-    private void cerrarSesion() {
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> updateUI(null));
-    }
-
-    /**
-     * Funcion publica para iniciar sesion dentro de la clase pulica MainActivity
-      * @param view
-     */
-    public void iniciarSesion(View view){
+    public void iniciarSesion(View view) {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
     }
 
-    /**
-     * Funcion onActivityResult la cual se ejecuta luego de la verificacion de sesion
-     * y obtiene la informacion de sesion o mostrara un error en el Log si el inicio
-     * de sesion ha fallado.
-     * @param requestCode
-     * @param resultCode
-     * @param data
+    /*Implementamos la función (sobrescrita) onActivityResult dentro de la clase publica MainActivity, que se ejecutara después verificar sesión.
+     *Obtendremos la información de sesión o mostraremos un error en el Log.
+     *Si el inicio de sesión ha fallado
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -82,18 +58,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 if (account != null) firebaseAuthWithGoogle(account);
-            }catch (ApiException e) {
+            } catch (ApiException e) {
                 Log.w("TAG", "Fallo el inicio de sesión con google.", e);
             }
         }
     }
 
-    /**
-     * Funcion firebaseAuthWithGoogle la cual tiene como objetivo autenticar el inicio de
-     * sesion con Firebase para poder acceder a la base de datos mediantes las credenciales
-     * de Google.
-     * @param acct
-     */
+    /*Autenticamos sesión con Firebase (para acceder a la base de datos). Para ello usamos las credenciales de de Google.*/
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d("TAG", "firebaseAuthWithGoogle:" + acct.getId());
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -102,35 +73,25 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = mAuth.getCurrentUser();
                 updateUI(user);
             } else {
-                System.out.println("No se pudo iniciar sesion...");
+                System.out.println("error");
                 updateUI(null);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    /**
-     * Funcion updateUI la cual obtiene los datos del usuario en Firebase
-     * para luego empezar la actividad de perfil de usuario y pasamos la informacion
-     * desde el inicio de sesion de Google
-     * @param user
+    /*Obtenemos el usuario de Firebase. Podemos obtener el nombre, email y foto.
+     *Para verificar que la aplicación función.
+     *Imprime el nombre del usuario
      */
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            HashMap<String, String> info_user = new HashMap<String, String>();
-            info_user.put("user_name", user.getDisplayName());
-            info_user.put("user_email", user.getEmail());
-            info_user.put("user_photo", String.valueOf(user.getPhotoUrl()));
-            info_user.put("user_id", user.getUid());
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String photo = String.valueOf(user.getPhotoUrl());
 
-            finish();
-            Intent intent = new Intent(this, PerfilUsuario.class);
-            intent.putExtra("info_user", info_user);
-            startActivity(intent);
+            System.out.println("nombre");
+            System.out.println(name);
+
         } else {
             System.out.println("sin registrarse");
         }
