@@ -9,6 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     static final int GOOGLE_SIGN_IN = 123;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
+    // Set the dimensions of the sign-in button.
+    SignInButton signInButton = findViewById(R.id.googleLoginBtn);
+
 
 
     /*En la función onCreate (Función que se ejecuta al momento de iniciar la acción), instanciamos la configuración de inicio de Google y firebase*/
@@ -30,19 +34,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     /*Creamos la función pública de iniciar sesión dentro de la clase publica MainActivity.
      *Dentro de esta función llamaremos al inicio de sesión por Google.
      */
-    public void iniciarSesion(View view) {
+    public void iniciarSesion() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
+    }
+
+    /*Metodo de click para iniciar sesion*/
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.googleLoginBtn:
+                iniciarSesion();
+                break;
+             //Agregar el click para el cierre de sesion
+        }
     }
 
     /*Implementamos la función (sobrescrita) onActivityResult dentro de la clase publica MainActivity, que se ejecutara después verificar sesión.
@@ -53,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == GOOGLE_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
