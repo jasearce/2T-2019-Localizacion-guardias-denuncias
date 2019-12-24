@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">2T2019-Localizacion-de-guardias-para-denuncias</string>
-    <string name="txt_mensaje">Inicio de sesion con Google</string>
-    <string name="img_logo">logo_firebase</string>
-    <string name="btn_iniciarSesion">Iniciar Sesion</string>
-    <string name="img_perfil">imagen_perfil</string>
-    <string name="txt_ID">ID</string>
-    <string name="txt_nombre_usuario">Nombre de usuario</string>
-    <string name="txt_correo">Correo</string>
-    <string name="btn_cerrarSesion">Cerrar Sesion</string>
 </resources>
