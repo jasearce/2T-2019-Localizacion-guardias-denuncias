@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Estamos agregando el background como estilo para el Splash. -->
+    <style name="SplashActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/theme_background</item>
+    </style>
+
+
 </resources>

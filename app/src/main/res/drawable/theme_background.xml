@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--- Fondo del Splash Screen -->
+    <item
+        android:drawable="@drawable/background_app"/>
+    <item>
+        <!--- Icono de la aplicaciones a mostrar -->
+        <bitmap
+            android:gravity="center"
+            android:src="" />
+    </item>
+</layer-list>
