@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">2T2019-Localizacion-de-guardias-para-denuncias</string>
+    <string name="text_nuevoPorAqui">Eres nuevo por aqui?</string>
+    <string name="txt_registro">Registrate</string>
+    <string name="txt_bienvenida">Bienvenido!</string>
+    <string name="txt_mensaje">Es bueno verte de regreso!</string>
+    <string name="txtLogin">Login</string>
 </resources>
