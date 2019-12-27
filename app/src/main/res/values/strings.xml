@@ -5,4 +5,8 @@
     <string name="txt_bienvenida">Bienvenido!</string>
     <string name="txt_mensaje">Es bueno verte de regreso!</string>
     <string name="txtLogin">Login</string>
+    <string name="txtApp">Sectrack</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtPassword">Contraseña</string>
+    <string name="imgRetornar">Regresar</string>
 </resources>
