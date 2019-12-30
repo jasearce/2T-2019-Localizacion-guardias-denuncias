@@ -10,4 +10,14 @@
     <string name="txtPassword">Contraseña</string>
     <string name="imgRetornar">Regresar</string>
     <string name="txtAppObj">Solución efectiva para denunciar delitos!</string>
+    <string name="editTextNombres">Nombre</string>
+    <string name="editTextApellidos">Apellidos</string>
+    <string name="editTextRepPass">Repita su contraseña</string>
+    <string name="editTextTelef">Teléfono</string>
+    <string name="rBtnUser">Cliente</string>
+    <string name="rBtnGuardia">Guardia</string>
+    <string name="txtRegistro">Registro de usuario SecTrack</string>
+    <string name="txtMensaje">Seleccione el tipo de usuario a crear:</string>
+    <string name="txtMensaje2">Ingrese sus datos a continuación:</string>
+    <string name="btnRegistrarse">Registrarse</string>
 </resources>
