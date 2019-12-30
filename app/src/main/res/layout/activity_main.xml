@@ -38,7 +38,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtFrase"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="0.977"
+        android:onClick="onClick"/>
 
     <TextView
         android:id="@+id/txtBienvenida"
