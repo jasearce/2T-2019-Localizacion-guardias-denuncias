@@ -45,14 +45,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonCliente"
             android:layout_width="102dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/rBtnUser" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButtonGuardia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,7 +60,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextNombres"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="20dp"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/editTextApellidos"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="20dp"
@@ -86,10 +86,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombres" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="12dp"
@@ -101,10 +101,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextApellidos" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/editTextPassword"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="16dp"
@@ -116,10 +116,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/editTextConfirmPass"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="8dp"
@@ -131,10 +131,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <EditText
-        android:id="@+id/editText11"
+        android:id="@+id/editTextTelef"
         android:layout_width="300dp"
         android:layout_height="43dp"
         android:layout_marginTop="8dp"
@@ -147,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText10"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPass"
         app:layout_constraintVertical_bias="0.009" />
 
     <TextView
@@ -164,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRegister"
         android:layout_width="125dp"
         android:layout_height="52sp"
         android:layout_marginTop="28dp"
@@ -174,6 +174,6 @@
         android:textColor="@color/md_white_1000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText11" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelef" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
