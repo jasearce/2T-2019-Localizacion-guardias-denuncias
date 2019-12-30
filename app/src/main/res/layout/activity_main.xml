@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background_app">
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/txtFrase"
@@ -16,7 +16,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/text_nuevoPorAqui"
-        android:textColor="@color/md_white_1000"
+        android:textColor="@color/md_black_1000"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -32,7 +32,7 @@
         android:layout_marginLeft="4dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txt_registro"
-        android:textColor="@color/md_yellow_600"
+        android:textColor="@color/md_red_600"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -49,7 +49,7 @@
         android:layout_marginTop="208dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txt_bienvenida"
-        android:textColor="@color/md_blue_grey_800"
+        android:textColor="@color/md_text_white"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/txt_mensaje"
-        android:textColor="@color/md_blue_grey_500_75"
+        android:textColor="@color/md_white_1000_75"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/txtFrase"
         app:layout_constraintEnd_toEndOf="parent"

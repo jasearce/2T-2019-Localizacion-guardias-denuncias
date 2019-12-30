@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!--- Fondo del Splash Screen -->
     <item
-        android:drawable="@drawable/background_app"/>
+        android:drawable="@drawable/background"/>
     <item>
         <!--- Icono de la aplicaciones a mostrar -->
         <bitmap

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/fondo_inicio_sesion">
+    android:background="@drawable/inicio_sesion">
 
     <EditText
         android:id="@+id/editText"
@@ -69,14 +69,14 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/txtApp"
         android:textColor="@color/md_indigo_300"
-        android:textStyle="italic"
         android:textSize="40sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <ImageView
         android:id="@+id/imgRetornar"
@@ -90,6 +90,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.472"
         app:srcCompat="@drawable/flecha_regresar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtAppObj"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/md_indigo_300"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
