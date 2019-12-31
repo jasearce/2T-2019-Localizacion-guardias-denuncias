@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -47,7 +50,7 @@ public class RegistroActivity extends AppCompatActivity {
         progressDialog.setMessage("Registrando usuario");
 
         mAuth = FirebaseAuth.getInstance();
-
+        checkConnection();
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();
@@ -150,6 +153,26 @@ public class RegistroActivity extends AppCompatActivity {
         return valido;
     }
 
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
+    public void checkConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "No hay conexion a Internet",Toast.LENGTH_SHORT).show();
+        }
+    }
     private void registrar(String email,String password){
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
