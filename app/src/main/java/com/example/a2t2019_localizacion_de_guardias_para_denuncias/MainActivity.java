@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnLogin = (Button)findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btnLogin);
         txtRegistrarse = findViewById(R.id.txtRegistro);
     }
 

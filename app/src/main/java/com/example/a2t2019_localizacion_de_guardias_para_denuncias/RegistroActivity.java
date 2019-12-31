@@ -11,8 +11,10 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +30,7 @@ public class RegistroActivity extends AppCompatActivity {
     public EditText mApellidosEt;
     public EditText mTelefonoEt;
     public Button btnRegistro;
+    public TextView txtIniciarSesion;
 
     public ProgressDialog progressDialog;
 
@@ -45,12 +48,20 @@ public class RegistroActivity extends AppCompatActivity {
         mApellidosEt = findViewById(R.id.editTextApellidos);
         mTelefonoEt = findViewById(R.id.editTextTelef);
         btnRegistro = findViewById(R.id.btnRegister);
+        txtIniciarSesion = findViewById(R.id.txtRetornoInicioSesion);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registrando usuario");
 
         mAuth = FirebaseAuth.getInstance();
         checkConnection();
+        txtIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();

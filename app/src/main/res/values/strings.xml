@@ -20,4 +20,6 @@
     <string name="txtMensaje">Seleccione el tipo de usuario a crear:</string>
     <string name="txtMensaje2">Ingrese sus datos a continuación:</string>
     <string name="btnRegistrarse">Registrarse</string>
+    <string name="txtMensajeLogin">Ya posees una cuenta?</string>
+    <string name="txtIniciaSesion">Inicia sesión</string>
 </resources>
