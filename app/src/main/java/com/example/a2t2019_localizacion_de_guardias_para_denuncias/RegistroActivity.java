@@ -36,7 +36,7 @@ public class RegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
 
         mEmailEt = findViewById(R.id.editTextEmail);
-        mPassEt = findViewById(R.id.editTextPass);
+        mPassEt = findViewById(R.id.editTextPassword);
         mRepPassEt = findViewById(R.id.editTextConfirmPass);
         mNombreEt = findViewById(R.id.editTextNombres);
         mApellidosEt = findViewById(R.id.editTextApellidos);
@@ -49,77 +49,107 @@ public class RegistroActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         btnRegistro.setOnClickListener(v -> {
-            String name = mNombreEt.getText().toString();
-            String apellidos = mApellidosEt.getText().toString();
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();
-            String repPass = mRepPassEt.getText().toString();
-            String telefono = mTelefonoEt.getText().toString();
-
-            if(TextUtils.isEmpty(name)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mNombreEt.setError("No existen datos en Nombre");
-                mNombreEt.setFocusable(true);
+            if(!validarFormulario()){
+                Toast.makeText(this, "Revise la solicitud de creacion de usuario por favor!",Toast.LENGTH_SHORT).show();
             }else{
-                mNombreEt.setError(null);
+                registrar(email,password);
             }
 
-            if(TextUtils.isEmpty(apellidos)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mApellidosEt.setError("No existen datos en Apellidos");
-                mApellidosEt.setFocusable(true);
-            }else{
-                mApellidosEt.setError(null);
-            }
+        });
 
-            if(TextUtils.isEmpty(email)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mEmailEt.setError("No existen datos en Email");
-                mEmailEt.setFocusable(true);
-            }else{
-                mEmailEt.setError(null);
-            }
+    }
 
-            if(TextUtils.isEmpty(password)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mPassEt.setError("No existen datos en Contraseña");
-                mPassEt.setFocusable(true);
-            }else{
-                mPassEt.setError(null);
-            }
+    /**
+     * Autor: Javier Arce
+     * Metodo para validar los campos del registro de usuario, el cual retorna un booleano el cual
+     * servira para verificar antes de dar click en el boton de registrar de la actividad Registro
+     * @return
+     */
+    private boolean validarFormulario(){
+        boolean valido = true;
+        String name = mNombreEt.getText().toString();
+        String apellidos = mApellidosEt.getText().toString();
+        String email = mEmailEt.getText().toString();
+        String password = mPassEt.getText().toString();
+        String repPass = mRepPassEt.getText().toString();
+        String telefono = mTelefonoEt.getText().toString();
 
-            if(TextUtils.isEmpty(repPass)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mRepPassEt.setError("No ha repetido su contraseña");
-                mRepPassEt.setFocusable(true);
-            }else{
-                mRepPassEt.setError(null);
-            }
+        if(TextUtils.isEmpty(name)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mNombreEt.setError("No existen datos en Nombre");
+            mNombreEt.setFocusable(true);
+            valido = false;
+        }else{
+            mNombreEt.setError(null);
+        }
 
-            if(TextUtils.isEmpty(telefono)){
-                Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
-                        Toast.LENGTH_SHORT).show();
-                mTelefonoEt.setError("No existen datos en Telefono");
-                mTelefonoEt.setFocusable(true);
-            }else{
-                mTelefonoEt.setError(null);
-            }
+        if(TextUtils.isEmpty(apellidos)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mApellidosEt.setError("No existen datos en Apellidos");
+            mApellidosEt.setFocusable(true);
+            valido = false;
+        }else{
+            mApellidosEt.setError(null);
+        }
 
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mEmailEt.setError("No existen datos en Email");
+            mEmailEt.setFocusable(true);
+            valido = false;
+        }else{
+            mEmailEt.setError(null);
             if(!Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()){
                 mEmailEt.setError("Email Invalido!");
                 Toast.makeText(RegistroActivity.this, "Formato incorrecto del email", Toast.LENGTH_SHORT).show();
                 mEmailEt.setFocusable(true);
-            }else{
-                registrar(email,password);
+                valido = false;
             }
-        });
+        }
 
+        if(TextUtils.isEmpty(password)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mPassEt.setError("No existen datos en Contraseña");
+            mPassEt.setFocusable(true);
+            valido = false;
+        }else{
+            mPassEt.setError(null);
+        }
+
+        if(TextUtils.isEmpty(repPass)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mRepPassEt.setError("No ha repetido su contraseña");
+            mRepPassEt.setFocusable(true);
+            valido = false;
+        }else{
+            mRepPassEt.setError(null);
+            if(!repPass.equals(password)){
+                Toast.makeText(RegistroActivity.this, "Contrasenas no coinciden", Toast.LENGTH_SHORT).show();
+                mRepPassEt.setFocusable(true);
+                valido = false;
+            }
+        }
+
+        if(TextUtils.isEmpty(telefono)){
+            Toast.makeText(RegistroActivity.this, "No ha ingresado datos en el campo",
+                    Toast.LENGTH_SHORT).show();
+            mTelefonoEt.setError("No existen datos en Telefono");
+            mTelefonoEt.setFocusable(true);
+            valido = false;
+        }else{
+            mTelefonoEt.setError(null);
+        }
+
+        return valido;
     }
+
     private void registrar(String email,String password){
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)

@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     public ImageView btnRegresar;
     public EditText userEditText;
     public EditText passEditText;
+    public Button btnLogin;
 
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener authStateListener;
