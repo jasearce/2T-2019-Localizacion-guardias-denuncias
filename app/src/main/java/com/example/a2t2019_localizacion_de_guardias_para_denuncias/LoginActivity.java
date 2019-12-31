@@ -3,6 +3,10 @@ package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.usage.NetworkStatsManager;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,11 +45,27 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
             if (firebaseUser != null) {
                 Toast.makeText(LoginActivity.this, "Inicio de sesion exitoso",Toast.LENGTH_SHORT).show();
-            }else{
+            }/*else{
                 Toast.makeText(LoginActivity.this, "Inicio de sesion falló",Toast.LENGTH_SHORT).show();
-            }
+            }*/
         };
+        checkConnection();
+    }
 
+    public void checkConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "No hay conexion a Internet",Toast.LENGTH_SHORT).show();
+        }
     }
     @Override
     public void onStart() {
