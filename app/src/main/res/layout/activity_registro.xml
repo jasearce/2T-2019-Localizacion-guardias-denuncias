@@ -11,9 +11,9 @@
         android:id="@+id/textView4"
         android:layout_width="303dp"
         android:layout_height="35dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="@string/txtRegistro"
@@ -26,9 +26,9 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="18dp"
         android:text="@string/txtMensaje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -37,7 +37,9 @@
         android:id="@+id/radioGroup"
         android:layout_width="282dp"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -53,8 +55,8 @@
 
         <RadioButton
             android:id="@+id/radioButtonGuardia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
             android:text="@string/rBtnGuardia" />
     </RadioGroup>
@@ -62,8 +64,8 @@
     <EditText
         android:id="@+id/editTextNombres"
         android:layout_width="300dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="34sp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_field"
         android:ems="10"
         android:hint="@string/editTextNombres"
@@ -76,8 +78,8 @@
     <EditText
         android:id="@+id/editTextApellidos"
         android:layout_width="300dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="34sp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_field"
         android:ems="10"
         android:hint="@string/editTextApellidos"
@@ -91,8 +93,8 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="34sp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_field"
         android:ems="10"
         android:hint="@string/txtEmail"
@@ -106,8 +108,8 @@
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="300dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="34sp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_field"
         android:ems="10"
         android:hint="@string/txtPassword"
@@ -121,7 +123,7 @@
     <EditText
         android:id="@+id/editTextConfirmPass"
         android:layout_width="300dp"
-        android:layout_height="43dp"
+        android:layout_height="34sp"
         android:layout_marginTop="8dp"
         android:background="@drawable/input_field"
         android:ems="10"
@@ -136,27 +138,25 @@
     <EditText
         android:id="@+id/editTextTelef"
         android:layout_width="300dp"
-        android:layout_height="43dp"
+        android:layout_height="34sp"
         android:layout_marginTop="8dp"
         android:background="@drawable/input_field"
         android:ems="10"
         android:hint="@string/editTextTelef"
         android:importantForAutofill="no"
         android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPass"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPass" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="12dp"
         android:text="@string/txtMensaje2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -168,12 +168,14 @@
         android:layout_width="125dp"
         android:layout_height="52sp"
         android:layout_marginTop="28dp"
-        android:text="@string/btnRegistrarse"
         android:background="@drawable/button"
         android:fontFamily="sans-serif-black"
+        android:text="@string/btnRegistrarse"
         android:textColor="@color/md_white_1000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelef" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelef"
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
