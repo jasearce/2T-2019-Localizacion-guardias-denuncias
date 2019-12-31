@@ -43,15 +43,15 @@ public class LoginActivity extends AppCompatActivity {
         btnRegresar.setOnClickListener(v -> finish());
 
         mAuth = FirebaseAuth.getInstance();
+        checkConnection();
         authStateListener = firebaseAuth -> {
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
             if (firebaseUser != null) {
                 Toast.makeText(LoginActivity.this, "Inicio de sesion exitoso",Toast.LENGTH_SHORT).show();
-            }/*else{
+            }else{
                 Toast.makeText(LoginActivity.this, "Inicio de sesion falló",Toast.LENGTH_SHORT).show();
-            }*/
+            }
         };
-        checkConnection();
     }
 
     public void checkConnection(){
