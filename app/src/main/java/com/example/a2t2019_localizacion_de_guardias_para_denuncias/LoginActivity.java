@@ -68,10 +68,12 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
             }
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
-                Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Datos moviles: Encendido",
+                        Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(this, "No hay conexion a Internet",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No hay conexion a Internet",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,9 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }else{
                 progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                Toast.makeText(LoginActivity.this, "Por favor revise que sus credenciales sean correctas.",
                         Toast.LENGTH_SHORT).show();
             }
-        }).addOnFailureListener(e -> Toast.makeText(LoginActivity.this, "Error al iniciar sesion",Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(LoginActivity.this, ""+e.getMessage(),
+                Toast.LENGTH_SHORT).show());
     }
 }
