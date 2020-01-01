@@ -33,7 +33,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final int RC_SIGN_IN = 100;
+    public static final int RC_SIGN_IN = 100;
     public ImageView btnRegresar;
     public EditText userEditText;
     public EditText passEditText;
@@ -49,16 +49,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+
         /*Parte de Google*/
         // Configure sign-in to request the user's ID, email address, and basic profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        //Firebase
-        mAuth = FirebaseAuth.getInstance();
 
         /*Parte grafica*/
         userEditText = findViewById(R.id.editTextEmail);
@@ -104,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
+                if(account != null) firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -114,23 +116,20 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, ""+user.getEmail(),
-                                    Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, PerfilUsuarioActivity.class));
-                            finish();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Fallo en inicio de sesion",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(LoginActivity.this, ""+user.getEmail(),
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, PerfilUsuarioActivity.class));
+                        finish();
+                        //updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(LoginActivity.this, "Fallo en inicio de sesion",
+                                Toast.LENGTH_SHORT).show();
+                        //updateUI(null);
                     }
                 }).addOnFailureListener(e -> Toast.makeText(LoginActivity.this,""+e.getMessage(),
                         Toast.LENGTH_SHORT).show());
