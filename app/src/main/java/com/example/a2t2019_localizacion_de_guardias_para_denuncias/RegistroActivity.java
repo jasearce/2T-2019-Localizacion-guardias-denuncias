@@ -20,6 +20,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -70,9 +74,7 @@ public class RegistroActivity extends AppCompatActivity {
             }else{
                 registrar(email,password);
             }
-
         });
-
     }
 
     /**
@@ -192,6 +194,23 @@ public class RegistroActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         progressDialog.dismiss();
                         FirebaseUser user = mAuth.getCurrentUser();
+                        //Obtengo el email y el id del usuario ingresado
+                        String userEmail = user.getEmail();
+                        String uid = user.getUid();
+                        //Guardo en un HashMap
+                        HashMap<Object,String> hashMap = new HashMap<>();
+
+                        hashMap.put("Email",userEmail);
+                        hashMap.put("UID",uid);
+                        hashMap.put("Nombre","");
+                        hashMap.put("Apellidos","");
+                        hashMap.put("Telefono","");
+                        hashMap.put("Imagen","");
+
+                        //Instancia de Firebase
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference reference = database.getReference("Usuarios");
+                        reference.child(uid).setValue(hashMap);
                         Toast.makeText(RegistroActivity.this, "Registro exitoso",
                                 Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegistroActivity.this, PerfilUsuarioActivity.class));
