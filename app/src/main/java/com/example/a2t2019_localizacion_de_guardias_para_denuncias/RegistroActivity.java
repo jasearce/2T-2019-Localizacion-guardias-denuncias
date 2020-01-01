@@ -1,6 +1,6 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -11,13 +11,11 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -59,12 +57,9 @@ public class RegistroActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         checkConnection();
-        txtIniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
-                finish();
-            }
+        txtIniciarSesion.setOnClickListener(v -> {
+            startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
+            finish();
         });
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
@@ -81,7 +76,7 @@ public class RegistroActivity extends AppCompatActivity {
      * Autor: Javier Arce
      * Metodo para validar los campos del registro de usuario, el cual retorna un booleano el cual
      * servira para verificar antes de dar click en el boton de registrar de la actividad Registro
-     * @return
+     * @return none
      */
     private boolean validarFormulario(){
         boolean valido = true;
