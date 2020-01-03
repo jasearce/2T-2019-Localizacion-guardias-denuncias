@@ -86,10 +86,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             String email = userEditText.getText().toString();
             String password = passEditText.getText().toString();
+
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 userEditText.setError("Formato de Email invalido");
                 userEditText.setFocusable(true);
-            }else if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            }
+            if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
                 Toast.makeText(LoginActivity.this, "Por favor ingrese su usuario y contraseña",
                         Toast.LENGTH_SHORT).show();
                 userEditText.setFocusable(true);
@@ -152,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Toast.makeText(LoginActivity.this, ""+user.getEmail(),
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, PerfilUsuarioActivity.class));
+                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         finish();
                         //updateUI(user);
                     } else {

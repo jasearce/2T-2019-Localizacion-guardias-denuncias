@@ -208,7 +208,7 @@ public class RegistroActivity extends AppCompatActivity {
                         reference.child(uid).setValue(hashMap);
                         Toast.makeText(RegistroActivity.this, "Registro exitoso",
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegistroActivity.this, PerfilUsuarioActivity.class));
+                        startActivity(new Intent(RegistroActivity.this, DashboardActivity.class));
                         finish();
                     } else {
                         // If sign in fails, display a message to the user.
