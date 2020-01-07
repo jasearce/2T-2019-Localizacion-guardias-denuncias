@@ -1,6 +1,5 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -10,9 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,10 +21,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -192,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 // Sign in success, update UI with the signed-in user's information
                 FirebaseUser user = mAuth.getCurrentUser();
-                startActivity(new Intent(LoginActivity.this, PerfilUsuarioActivity.class));
+                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
             }else{
                 progressDialog.dismiss();

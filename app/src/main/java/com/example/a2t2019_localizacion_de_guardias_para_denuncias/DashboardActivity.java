@@ -1,109 +1,102 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
-import android.view.Menu;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import java.util.HashMap;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-    private FusedLocationProviderClient fusedLocationClient;
-    public DatabaseReference databaseReference;
-
+    public FirebaseAuth firebaseAuth;
+    //public Button btnCerrarSesion;
+    public BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        FloatingActionButton fab1 = findViewById(R.id.map);
-        FloatingActionButton fab2 = findViewById(R.id.home);
-        FloatingActionButton fab3 = findViewById(R.id.profile);
-        FloatingActionButton fab4 = findViewById(R.id.settings);
+       //btnCerrarSesion = findViewById(R.id.btnLogout);
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(selectedListener);
 
-        subirLatLngFirebase();
+        /*Vista por defecto del fragment*/
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, homeFragment,"");
+        fragmentTransaction.commit();
 
+        /*
+        btnCerrarSesion.setOnClickListener(v -> {
+            firebaseAuth.signOut();
+            checkUserStatus();
+        });*/
+    }
 
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toMaps = new Intent(DashboardActivity.this, MapsActivity.class);
-                startActivity(toMaps);
-                finish();
+    private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            /*Aqui se maneja la seleccion de las opciones del menu*/
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    //Fragment de la pagina principal
+                    HomeFragment homeFragment = new HomeFragment();
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, homeFragment,"");
+                    fragmentTransaction.commit();
+                    return true;
+
+                case R.id.nav_map:
+                    //Fragment de la pagina de mapas
+                    MapaFragment mapaFragment = new MapaFragment();
+                    FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction2.replace(R.id.fragment_container, mapaFragment,"");
+                    fragmentTransaction2.commit();
+                    return true;
+
+                case R.id.nav_profile:
+                    //Fragment de la pagina de perfil de usuario
+                    PerfilFragment perfilFragment = new PerfilFragment();
+                    FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction3.replace(R.id.fragment_container, perfilFragment,"");
+                    fragmentTransaction3.commit();
+                    return true;
             }
-        });
 
-        fab3.setOnClickListener(view -> {
-            Intent toProfile = new Intent(DashboardActivity.this, PerfilUsuarioActivity.class);
-            startActivity(toProfile);
+
+            return false;
+        }
+    };
+
+    private void checkUserStatus(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser != null){
+            //Usuario que ha iniciado sesion se mantiene aqui
+            Toast.makeText(this,"Estoy en perfil usuario",Toast.LENGTH_SHORT).show();
+        }else{
+            //Usuario se lo regresa a que inicie sesion
+            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
             finish();
-        });
-
-    }
-
-    private void subirLatLngFirebase() {
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-
-            ActivityCompat.requestPermissions(DashboardActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-
-            return;
         }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
-                    // Got last known location. In some rare situations this can be null.
-                    if (location != null) {
-                        // Logic to handle location object
-                        Log.e("Latitud: ",+location.getLatitude()+"Longitud: "+location.getLongitude());
-
-                        HashMap<String,Object> latLng = new HashMap<>();
-                        latLng.put("latitud",location.getLatitude());
-                        latLng.put("longitud",location.getLongitude());
-                        databaseReference.child("Ubicacion").push().setValue(latLng);
-
-                    }
-                });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onStart() {
+        //Chequeamos el status
+        checkUserStatus();
+        super.onStart();
     }
 
 }
