@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,15 +19,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class DashboardActivity extends AppCompatActivity {
 
     public FirebaseAuth firebaseAuth;
-    //public Button btnCerrarSesion;
     public BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-       //btnCerrarSesion = findViewById(R.id.btnLogout);
 
         firebaseAuth = FirebaseAuth.getInstance();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -38,11 +36,6 @@ public class DashboardActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, homeFragment,"");
         fragmentTransaction.commit();
 
-        /*
-        btnCerrarSesion.setOnClickListener(v -> {
-            firebaseAuth.signOut();
-            checkUserStatus();
-        });*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,7 +77,7 @@ public class DashboardActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser != null){
             //Usuario que ha iniciado sesion se mantiene aqui
-            Toast.makeText(this,"Estoy en perfil usuario",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Estoy en el Dashboard",Toast.LENGTH_SHORT).show();
         }else{
             //Usuario se lo regresa a que inicie sesion
             startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
@@ -99,4 +92,22 @@ public class DashboardActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Obtenemos el ID del item del menu
+        int id = item.getItemId();
+        if(id == R.id.action_logout){
+            firebaseAuth.signOut();
+            checkUserStatus();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

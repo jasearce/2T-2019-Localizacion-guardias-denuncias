@@ -26,6 +26,12 @@
     <string name="title_activity_opciones_app">OpcionesApp</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="btnLogout">Cerrar Sesion</string>
+    <string name="txtPerfilNombre">Nombre</string>
+    <string name="txtPerfilApellidos">Apellidos</string>
+    <string name="txtPerfilEmail">Email</string>
+    <string name="txtPerfilTelefono">Teléfono</string>
+    <string name="txtPerfilCuenta">Tipo de cuenta</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
