@@ -135,6 +135,11 @@ public class LoginActivity extends AppCompatActivity {
                             //Obtengo el email y el id del usuario ingresado
                             String userEmail = user.getEmail();
                             String uid = user.getUid();
+                            String nombres = user.getDisplayName();
+
+                            System.out.println(nombres);
+
+                            String telefono = user.getPhoneNumber();
                             //Guardo en un HashMap
                             HashMap<Object,String> hashMap = new HashMap<>();
 
@@ -142,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                             hashMap.put("UID",uid);
                             hashMap.put("Nombre","");
                             hashMap.put("Apellidos","");
-                            hashMap.put("Telefono","");
+                            hashMap.put("Telefono",telefono);
                             hashMap.put("Imagen","");
 
                             //Instancia de Firebase

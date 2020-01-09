@@ -33,9 +33,7 @@ public class RegistroActivity extends AppCompatActivity {
     public EditText mTelefonoEt;
     public Button btnRegistro;
     public TextView txtIniciarSesion;
-
     public ProgressDialog progressDialog;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -192,6 +190,12 @@ public class RegistroActivity extends AppCompatActivity {
                         //Obtengo el email y el id del usuario ingresado
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
+                        String nombres = user.getDisplayName();
+
+                        //Verificar como se esta guardando el nombre
+                        System.out.println(nombres);
+
+                        String telefono = user.getPhoneNumber();
                         //Guardo en un HashMap
                         HashMap<Object,String> hashMap = new HashMap<>();
 
@@ -199,7 +203,7 @@ public class RegistroActivity extends AppCompatActivity {
                         hashMap.put("UID",uid);
                         hashMap.put("Nombre","");
                         hashMap.put("Apellidos","");
-                        hashMap.put("Telefono","");
+                        hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
 
                         //Instancia de Firebase

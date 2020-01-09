@@ -1,20 +1,14 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.net.Inet4Address;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,6 +56,7 @@ public class PerfilFragment extends Fragment {
 
         Query query = reference.orderByChild("Email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
@@ -74,7 +67,7 @@ public class PerfilFragment extends Fragment {
                     String apellidos = "" + snapshot.child("Apellidos").getValue();
                     String email = "" + snapshot.child("Email").getValue();
                     String telefono = "" + snapshot.child("Telefono").getValue();
-                    String fotoPerfil = "" + snapshot.child("Imagen").getValue();
+                    //String fotoPerfil = "" + snapshot.child("Imagen").getValue();
 
 
                     /*Colocamos la informacion obtenida del Firebase en el View*/
@@ -91,8 +84,6 @@ public class PerfilFragment extends Fragment {
 
             }
         });
-
-
         return view;
     }
 
