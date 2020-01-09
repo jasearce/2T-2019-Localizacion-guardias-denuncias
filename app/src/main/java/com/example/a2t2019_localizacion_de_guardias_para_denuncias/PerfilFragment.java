@@ -1,15 +1,22 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 
+<<<<<<< HEAD
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+=======
+import android.content.Intent;
+>>>>>>> comienzo_app
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+<<<<<<< HEAD
 import androidx.fragment.app.FragmentActivity;
 
+=======
+>>>>>>> comienzo_app
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +24,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import com.bumptech.glide.Glide;
+=======
+>>>>>>> comienzo_app
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +41,11 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
+<<<<<<< HEAD
 public class PerfilFragment extends Fragment  {
+=======
+public class PerfilFragment extends Fragment {
+>>>>>>> comienzo_app
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
@@ -86,12 +100,16 @@ public class PerfilFragment extends Fragment  {
                     String apellidos = "" + snapshot.child("Apellidos").getValue();
                     String email = "" + snapshot.child("Email").getValue();
                     String telefono = "" + snapshot.child("Telefono").getValue();
+<<<<<<< HEAD
                     String fotoPerfil = "" + snapshot.child("Imagen").getValue();
                     Uri urlfoto=Uri.parse(fotoPerfil);
                     if(!fotoPerfil.isEmpty()){
                         Glide.with(getActivity()).load(urlfoto).into(avatarUser);
                     }
 
+=======
+                    //String fotoPerfil = "" + snapshot.child("Imagen").getValue();
+>>>>>>> comienzo_app
 
 
                     /*Colocamos la informacion obtenida del Firebase en el View*/

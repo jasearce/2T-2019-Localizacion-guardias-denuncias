@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                             String userEmail = user.getEmail();
                             String uid = user.getUid();
                             String nombres = user.getDisplayName();
+<<<<<<< HEAD
                             String nombre=acct.getGivenName().toString().toUpperCase();
                             String apellido=acct.getFamilyName().toString().toUpperCase();
                             Uri urlFoto= acct.getPhotoUrl();
@@ -145,6 +146,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+=======
+>>>>>>> comienzo_app
 
                             System.out.println(nombres);
 
@@ -154,10 +157,17 @@ public class LoginActivity extends AppCompatActivity {
 
                             hashMap.put("Email",userEmail);
                             hashMap.put("UID",uid);
+<<<<<<< HEAD
                             hashMap.put("Nombre",nombre);
                             hashMap.put("Apellidos",apellido);
                             hashMap.put("Telefono",telefono);
                             hashMap.put("Imagen",imagen);
+=======
+                            hashMap.put("Nombre","");
+                            hashMap.put("Apellidos","");
+                            hashMap.put("Telefono",telefono);
+                            hashMap.put("Imagen","");
+>>>>>>> comienzo_app
 
                             //Instancia de Firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();

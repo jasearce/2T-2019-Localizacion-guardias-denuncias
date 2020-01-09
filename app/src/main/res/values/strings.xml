@@ -26,4 +26,19 @@
     <string name="title_activity_opciones_app">OpcionesApp</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="btnLogout">Cerrar Sesion</string>
+    <string name="txtPerfilNombre">Nombre</string>
+    <string name="txtPerfilApellidos">Apellidos</string>
+    <string name="txtPerfilEmail">Email</string>
+    <string name="txtPerfilTelefono">Teléfono</string>
+    <string name="txtPerfilCuenta">Tipo de cuenta</string>
+    <string name="txtPerfilID">ID</string>
+    <string name="txtBtnRobo">Robo</string>
+    <string name="txtBtnAgresion">Agresion</string>
+    <string name="txtBtnDrogas">Venta de drogas</string>
+    <string name="txtBtnOtro">Otro delito</string>
+    <string name="txtSeccionDenuncias">Sección de delitos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
