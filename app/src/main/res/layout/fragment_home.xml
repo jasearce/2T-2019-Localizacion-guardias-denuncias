@@ -17,6 +17,9 @@
             android:textSize="30sp"
             android:layout_centerInParent="true"
             android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:textColor="@color/md_blue_grey_500_75"
             android:text="@string/txtSeccionDenuncias" />
 
     </RelativeLayout>
@@ -45,6 +48,8 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
+                    android:drawableTop="@drawable/robo_btn"
+                    android:background="@color/md_white_1000"
                     android:text="@string/txtBtnRobo"/>
 
             </LinearLayout>
@@ -60,6 +65,8 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:drawableTop="@drawable/agresion"
+                    android:background="@color/md_white_1000"
                     android:text="@string/txtBtnAgresion"/>
 
 
@@ -86,6 +93,8 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
+                    android:drawableTop="@drawable/droga_bttn"
+                    android:background="@color/md_white_1000"
                     android:text="@string/txtBtnDrogas" />
 
             </LinearLayout>
@@ -101,6 +110,8 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:drawableTop="@drawable/otro_bttn"
+                    android:background="@color/md_white_1000"
                     android:text="@string/txtBtnOtro" />
 
             </LinearLayout>
