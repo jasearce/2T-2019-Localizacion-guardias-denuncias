@@ -39,7 +39,7 @@
             android:layout_below="@+id/imgPerfil"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8sp"
-            android:text="ID"
+            android:text="@string/txtPerfilID"
             android:fontFamily="sans-serif-light"
             android:textSize="18sp"
             android:textColor="@color/md_white_1000"/>
@@ -48,7 +48,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="555dp"
+        android:layout_height="360dp"
         android:layout_below="@+id/fondoImgPerfil"
         android:layout_marginTop="-2dp">
 

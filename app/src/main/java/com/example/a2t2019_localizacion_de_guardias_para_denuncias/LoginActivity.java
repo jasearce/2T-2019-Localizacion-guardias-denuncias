@@ -170,6 +170,8 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show());
     }
 
+
+
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

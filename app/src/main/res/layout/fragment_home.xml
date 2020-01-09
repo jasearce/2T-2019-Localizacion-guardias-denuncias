@@ -1,18 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/frgSeccionDelitos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Home" />
+        android:layout_height="144dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/txtSeccionDenuncias" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="448dp"
+        android:layout_below="@+id/frgSeccionDelitos"
+        android:layout_marginTop="-2dp">
+
+        <LinearLayout
+            android:layout_width="348dp"
+            android:layout_height="366dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtBtnRobo" />
+
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtBtnAgresion" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtBtnDrogas" />
+
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/txtBtnOtro" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
