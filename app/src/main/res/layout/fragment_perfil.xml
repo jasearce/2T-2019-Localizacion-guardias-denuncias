@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilFragment">
+
+    <RelativeLayout
+        android:id="@+id/fondoImgPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_blue_grey_500_75"
+        android:paddingBottom="5dp">
+        
+        <RelativeLayout
+            android:id="@+id/imgPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circulo_borde"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/imv_foto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:layout_margin="9dp"
+                android:background="@drawable/circulo"
+                android:scaleType="centerInside"
+                android:src="@drawable/rsz_logo_security"
+                />
+            
+        </RelativeLayout>
+        
+        <TextView
+            android:id="@+id/txt_userID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgPerfil"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8sp"
+            android:text="@string/txtPerfilID"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp"
+            android:textColor="@color/md_white_1000"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_below="@+id/fondoImgPerfil"
+        android:layout_marginTop="-2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="560dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtPerfilNombre"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="mi nombre"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_grey_50" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtPerfilApellidos"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_apellidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="mis apellidos"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_grey_50" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtPerfilEmail"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_correo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="mi email"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_grey_50" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtPerfilTelefono"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_telefonoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="mi telefono"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_grey_50" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtPerfilCuenta"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_tipo_cuenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="mi tipo de cuenta"
+                    android:textColor="@color/md_blue_grey_500_75"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_grey_50" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="120dp"
+                android:layout_height="48sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/btnLogout"
+                android:textColor="@color/md_white_1000"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

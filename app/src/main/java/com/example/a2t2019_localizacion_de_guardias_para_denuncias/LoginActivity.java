@@ -1,6 +1,5 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -8,11 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,10 +22,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -134,24 +130,40 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
-                        //Obtengo el email y el id del usuario ingresado
-                        String userEmail = user.getEmail();
-                        String uid = user.getUid();
-                        //Guardo en un HashMap
-                        HashMap<Object,String> hashMap = new HashMap<>();
 
-                        hashMap.put("Email",userEmail);
-                        hashMap.put("UID",uid);
-                        hashMap.put("Nombre","");
-                        hashMap.put("Apellidos","");
-                        hashMap.put("Telefono","");
-                        hashMap.put("Imagen","");
+                        /*Si ingresa por primera vez el usuario se muestra us informacion de perfil de la cuenta de Google*/
+                        if(task.getResult().getAdditionalUserInfo().isNewUser()){
+                            //Obtengo el email y el id del usuario ingresado
+                            String userEmail = user.getEmail();
+                            String uid = user.getUid();
+                            String nombres = user.getDisplayName();
+                            String nombre=acct.getGivenName().toString().toUpperCase();
+                            String apellido=acct.getFamilyName().toString().toUpperCase();
+                            Uri urlFoto= acct.getPhotoUrl();
+                            String imagen=urlFoto.toString();
 
-                        //Instancia de Firebase
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference reference = database.getReference("Usuarios");
-                        reference.child(uid).setValue(hashMap);
 
+
+
+
+                            System.out.println(nombres);
+
+                            String telefono = user.getPhoneNumber();
+                            //Guardo en un HashMap
+                            HashMap<Object,String> hashMap = new HashMap<>();
+
+                            hashMap.put("Email",userEmail);
+                            hashMap.put("UID",uid);
+                            hashMap.put("Nombre",nombre);
+                            hashMap.put("Apellidos",apellido);
+                            hashMap.put("Telefono",telefono);
+                            hashMap.put("Imagen",imagen);
+
+                            //Instancia de Firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("Usuarios");
+                            reference.child(uid).setValue(hashMap);
+                        }
                         Toast.makeText(LoginActivity.this, ""+user.getEmail(),
                                 Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
@@ -166,6 +178,8 @@ public class LoginActivity extends AppCompatActivity {
                 }).addOnFailureListener(e -> Toast.makeText(LoginActivity.this,""+e.getMessage(),
                         Toast.LENGTH_SHORT).show());
     }
+
+
 
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
@@ -192,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 // Sign in success, update UI with the signed-in user's information
                 FirebaseUser user = mAuth.getCurrentUser();
-                startActivity(new Intent(LoginActivity.this, PerfilUsuarioActivity.class));
+                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
             }else{
                 progressDialog.dismiss();

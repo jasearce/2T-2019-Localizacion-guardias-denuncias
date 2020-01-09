@@ -33,9 +33,7 @@ public class RegistroActivity extends AppCompatActivity {
     public EditText mTelefonoEt;
     public Button btnRegistro;
     public TextView txtIniciarSesion;
-
     public ProgressDialog progressDialog;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -64,10 +62,13 @@ public class RegistroActivity extends AppCompatActivity {
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();
+            String nombre = mNombreEt.getText().toString().toUpperCase();
+            String apellido = mApellidosEt.getText().toString().toUpperCase();
+            String telefono = mTelefonoEt.getText().toString();
             if(!validarFormulario()){
                 Toast.makeText(this, "Revise la solicitud de creacion de usuario por favor!",Toast.LENGTH_SHORT).show();
             }else{
-                registrar(email,password);
+                registrar(email,password,nombre,apellido,telefono);
             }
         });
     }
@@ -181,7 +182,7 @@ public class RegistroActivity extends AppCompatActivity {
             Toast.makeText(this, "No hay conexion a Internet",Toast.LENGTH_SHORT).show();
         }
     }
-    private void registrar(String email,String password){
+    private void registrar(String email,String password, String nombre, String apellido, String telefono){
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -192,14 +193,20 @@ public class RegistroActivity extends AppCompatActivity {
                         //Obtengo el email y el id del usuario ingresado
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
+                        //String nombres = user.getDisplayName();
+
+                        //Verificar como se esta guardando el nombre
+                       // System.out.println(nombres);
+
+                        //String telefono = user.getPhoneNumber();
                         //Guardo en un HashMap
                         HashMap<Object,String> hashMap = new HashMap<>();
 
                         hashMap.put("Email",userEmail);
                         hashMap.put("UID",uid);
-                        hashMap.put("Nombre","");
-                        hashMap.put("Apellidos","");
-                        hashMap.put("Telefono","");
+                        hashMap.put("Nombre",nombre);
+                        hashMap.put("Apellidos",apellido);
+                        hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
 
                         //Instancia de Firebase
