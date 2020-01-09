@@ -193,33 +193,22 @@ public class RegistroActivity extends AppCompatActivity {
                         //Obtengo el email y el id del usuario ingresado
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
-<<<<<<< HEAD
+
                         //String nombres = user.getDisplayName();
 
                         //Verificar como se esta guardando el nombre
                        // System.out.println(nombres);
 
                         //String telefono = user.getPhoneNumber();
-=======
-                        String nombres = user.getDisplayName();
 
-                        //Verificar como se esta guardando el nombre
-                        System.out.println(nombres);
 
-                        String telefono = user.getPhoneNumber();
->>>>>>> comienzo_app
                         //Guardo en un HashMap
                         HashMap<Object,String> hashMap = new HashMap<>();
 
                         hashMap.put("Email",userEmail);
                         hashMap.put("UID",uid);
-<<<<<<< HEAD
                         hashMap.put("Nombre",nombre);
                         hashMap.put("Apellidos",apellido);
-=======
-                        hashMap.put("Nombre","");
-                        hashMap.put("Apellidos","");
->>>>>>> comienzo_app
                         hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
 

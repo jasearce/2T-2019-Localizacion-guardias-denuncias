@@ -28,12 +28,8 @@
                 android:layout_margin="9dp"
                 android:background="@drawable/circulo"
                 android:scaleType="centerInside"
-<<<<<<< HEAD
-                android:src="@drawable/rsz_logo_security"
-                />
-=======
                 android:src="@drawable/rsz_logo_security"/>
->>>>>>> comienzo_app
+
             
         </RelativeLayout>
         
