@@ -32,22 +32,22 @@ public class HomeFragment extends Fragment {
         btnOtroDelito = view.findViewById(R.id.btnDenunciaOtro);
 
         btnRobo.setOnClickListener(v -> {
-            getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().finish();
         });
 
         btnAgresion.setOnClickListener(v -> {
-            getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().finish();
         });
 
         btnDrogas.setOnClickListener(v -> {
-            getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().finish();
         });
 
         btnOtroDelito.setOnClickListener(v -> {
-            getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().finish();
         });
 
