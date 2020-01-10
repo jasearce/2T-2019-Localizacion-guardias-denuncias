@@ -1,9 +1,6 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,9 +8,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -120,21 +114,24 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
         mDatabase.child("registro").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Ubicacion ubicacionGuardia;
+                LatLng posicionGuardia;
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     String latFirebase = "" + snapshot.child("lat").getValue();
                     String lonFirebase = "" + snapshot.child("lon").getValue();
-                    Ubicacion ubicacionGuardia = cambioALatLng(latFirebase, lonFirebase);
+
+                    ubicacionGuardia = cambioALatLng(latFirebase, lonFirebase);
+                    posicionGuardia = new LatLng(ubicacionGuardia.getLatitud(), ubicacionGuardia.getLongitud());
+
                     googleMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(ubicacionGuardia.getLatitud(), ubicacionGuardia.getLongitud())))
-                            .setTitle("Guardia");
+                            .position(posicionGuardia));
                     CameraPosition cameraPosition = CameraPosition.builder()
-                            .target(new LatLng(ubicacionGuardia.getLatitud(), ubicacionGuardia.getLongitud()))
+                            .target(posicionGuardia)
                             .zoom(10)
                             .bearing(0)
                             .tilt(45)
                             .build();
                     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
                 }
             }
 
@@ -146,27 +143,36 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private Ubicacion cambioALatLng(String latitud, String longitud){
-        /*Cambio los string de Firebase hacia un tipo de dato Integer*/
-        int latFirebaseInt = Integer.valueOf(latitud);
-        int lonFirebaseInt = Integer.valueOf(longitud);
+        Ubicacion ubicacion;
+        double dLatitud;
+        double dLongitud;
 
-        /*Cambio los valores a hexadecimal*/
-        String hexLatitud = Integer.toHexString(latFirebaseInt) + "00";
-        String hexLongitud = Integer.toHexString(lonFirebaseInt) + "00";
+        if(latitud.equals("null") || longitud.equals("null")){
+            /*Posicion por defecto*/
+            dLatitud = -2.146772;
+            dLongitud = -79.966155;
+        }else {
+            /*Cambio los string de Firebase hacia un tipo de dato Integer*/
+            int latFirebaseInt = Integer.parseInt(latitud.trim());
+            int lonFirebaseInt = Integer.parseInt(longitud.trim());
 
-        /*Cambio a un Long los valores hexadecimales*/
-        Long lLatitud = Long.parseLong(hexLatitud,16);
-        Long lLongitud = Long.parseLong(hexLongitud, 16);
+            /*Cambio los valores a hexadecimal*/
+            String hexLatitud = Integer.toHexString(latFirebaseInt) + "00";
+            String hexLongitud = Integer.toHexString(lonFirebaseInt) + "00";
 
-        /*Finalmente obtengo los valores utiles de latitud y longitud*/
-        float fLatitud= Float.intBitsToFloat(lLatitud.intValue());
-        float fLongitud= Float.intBitsToFloat(lLongitud.intValue());
+            /*Cambio a un Long los valores hexadecimales*/
+            Long lLatitud = Long.parseLong(hexLatitud,16);
+            Long lLongitud = Long.parseLong(hexLongitud, 16);
 
-        /*Pasamos a tipo de datos double ya que para crear un LatLng se necesita dos double*/
-        double dLatitud =(double) fLatitud;
-        double dLongitud = (double) fLongitud;
+            /*Finalmente obtengo los valores utiles de latitud y longitud*/
+            float fLatitud= Float.intBitsToFloat(lLatitud.intValue());
+            float fLongitud= Float.intBitsToFloat(lLongitud.intValue());
 
-        Ubicacion ubicacion = new Ubicacion(dLatitud, dLongitud);
+            /*Pasamos a tipo de datos double ya que para crear un LatLng se necesita dos double*/
+            dLatitud =(double) fLatitud;
+            dLongitud = (double) fLongitud;
+        }
+        ubicacion = new Ubicacion(dLatitud, dLongitud);
 
         return ubicacion;
     }
