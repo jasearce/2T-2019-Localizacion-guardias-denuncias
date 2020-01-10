@@ -3,10 +3,11 @@
     <!--- Fondo del Splash Screen -->
     <item
         android:drawable="@drawable/background"/>
+
     <item>
         <!--- Icono de la aplicaciones a mostrar -->
         <bitmap
             android:gravity="center"
-            android:src="@drawable/rsz_190628" />
+            android:src="@drawable/aplicacion" />
     </item>
 </layer-list>
