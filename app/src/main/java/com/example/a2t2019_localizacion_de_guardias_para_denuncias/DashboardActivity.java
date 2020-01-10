@@ -1,6 +1,7 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,8 +18,11 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -85,6 +89,7 @@ public class DashboardActivity extends AppCompatActivity {
      * Mediante el onNavigationItemSelected se permitira el desplazamiento entre los fragment
      * que se generan en el BottomNavigationView, esto mediante una sentencia switch-case.
      */
+
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = menuItem -> {
         /*Aqui se maneja la seleccion de las opciones del menu*/
         switch (menuItem.getItemId()){

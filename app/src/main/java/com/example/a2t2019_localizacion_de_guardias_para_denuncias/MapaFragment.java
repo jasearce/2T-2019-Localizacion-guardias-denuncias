@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -90,9 +91,9 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
                     marker.remove();
                 }
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    Ubicacion ubi = snapshot.getValue(Ubicacion.class);
-                    Double latitud = ubi.getLatitud();
-                    Double longitud = ubi.getLongitud();
+                    Ubicacion ubicacionCliente = snapshot.getValue(Ubicacion.class);
+                    Double latitud = ubicacionCliente.getLatitud();
+                    Double longitud = ubicacionCliente.getLongitud();
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(new LatLng(latitud, longitud));
@@ -114,14 +115,59 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-        /*
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247, -74.044502))
-                .title("Estatua de la Libertad"));
-        CameraPosition liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502))
-                .zoom(16)
-                .bearing(0)
-                .tilt(45)
-                .build();
-        */
+
+        /*Registros del dispostivo IoT*/
+        mDatabase.child("registro").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    String latFirebase = "" + snapshot.child("lat").getValue();
+                    String lonFirebase = "" + snapshot.child("lon").getValue();
+                    Ubicacion ubicacionGuardia = cambioALatLng(latFirebase, lonFirebase);
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(ubicacionGuardia.getLatitud(), ubicacionGuardia.getLongitud())))
+                            .setTitle("Guardia");
+                    CameraPosition cameraPosition = CameraPosition.builder()
+                            .target(new LatLng(ubicacionGuardia.getLatitud(), ubicacionGuardia.getLongitud()))
+                            .zoom(10)
+                            .bearing(0)
+                            .tilt(45)
+                            .build();
+                    googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                System.out.println(databaseError.toException());
+            }
+        });
+    }
+
+    private Ubicacion cambioALatLng(String latitud, String longitud){
+        /*Cambio los string de Firebase hacia un tipo de dato Integer*/
+        int latFirebaseInt = Integer.valueOf(latitud);
+        int lonFirebaseInt = Integer.valueOf(longitud);
+
+        /*Cambio los valores a hexadecimal*/
+        String hexLatitud = Integer.toHexString(latFirebaseInt) + "00";
+        String hexLongitud = Integer.toHexString(lonFirebaseInt) + "00";
+
+        /*Cambio a un Long los valores hexadecimales*/
+        Long lLatitud = Long.parseLong(hexLatitud,16);
+        Long lLongitud = Long.parseLong(hexLongitud, 16);
+
+        /*Finalmente obtengo los valores utiles de latitud y longitud*/
+        float fLatitud= Float.intBitsToFloat(lLatitud.intValue());
+        float fLongitud= Float.intBitsToFloat(lLongitud.intValue());
+
+        /*Pasamos a tipo de datos double ya que para crear un LatLng se necesita dos double*/
+        double dLatitud =(double) fLatitud;
+        double dLongitud = (double) fLongitud;
+
+        Ubicacion ubicacion = new Ubicacion(dLatitud, dLongitud);
+
+        return ubicacion;
     }
 }
