@@ -89,7 +89,6 @@ public class DashboardActivity extends AppCompatActivity {
      * Mediante el onNavigationItemSelected se permitira el desplazamiento entre los fragment
      * que se generan en el BottomNavigationView, esto mediante una sentencia switch-case.
      */
-
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = menuItem -> {
         /*Aqui se maneja la seleccion de las opciones del menu*/
         switch (menuItem.getItemId()){
