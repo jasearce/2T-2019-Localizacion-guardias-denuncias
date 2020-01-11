@@ -110,8 +110,8 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:drawableTop="@drawable/otro_bttn"
                     android:background="@color/md_white_1000"
+                    android:drawableTop="@drawable/crimen_bttn1"
                     android:text="@string/txtBtnOtro" />
 
             </LinearLayout>
