@@ -1,6 +1,7 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,32 @@ public class HomeFragment extends Fragment {
         btnAgresion = view.findViewById(R.id.btnDenunciaAgresion);
         btnDrogas = view.findViewById(R.id.btnDenunciaDrogas);
         btnOtroDelito = view.findViewById(R.id.btnDenunciaOtro);
+
+        btnRobo.setOnClickListener(v -> {
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().finish();
+        });
+
+        btnAgresion.setOnClickListener(v -> {
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().finish();
+        });
+
+        btnDrogas.setOnClickListener(v -> {
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().finish();
+        });
+
+        btnOtroDelito.setOnClickListener(v -> {
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().finish();
+        });
+
+
 
         return view;
     }

@@ -59,7 +59,7 @@ public class PerfilFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("Usuarios");
 
-        avatarUser = view.findViewById(R.id.imv_foto);
+        avatarUser = view.findViewById(R.id.profile_image);
         txtID = view.findViewById(R.id.txt_userID);
         txtNombre = view.findViewById(R.id.txt_nombre);
         txtApellidos = view.findViewById(R.id.txt_apellidos);
@@ -91,14 +91,11 @@ public class PerfilFragment extends Fragment {
                     String fotoPerfil = "" + snapshot.child("Imagen").getValue();
                     Uri urlfoto=Uri.parse(fotoPerfil);
                     if(!fotoPerfil.isEmpty()){
-                        Glide.with(getActivity()).load(urlfoto).into(avatarUser);
+                        Glide.with(getActivity()).load(urlfoto).centerCrop().into(avatarUser);
                     }
 
-
-
-
                     /*Colocamos la informacion obtenida del Firebase en el View*/
-                    txtID.setText(uid);
+                    txtID.setText(nombre +" "+ apellidos);
                     txtNombre.setText(nombre);
                     txtApellidos.setText(apellidos);
                     txtEmail.setText(email);
