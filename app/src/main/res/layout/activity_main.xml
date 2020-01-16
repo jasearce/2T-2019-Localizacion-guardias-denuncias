@@ -7,6 +7,17 @@
     tools:context=".MainActivity"
     android:background="@drawable/background">
 
+    <VideoView
+        android:id="@+id/videoBack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0"/>
+
     <TextView
         android:id="@+id/txtFrase"
         android:layout_width="wrap_content"
@@ -16,7 +27,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/text_nuevoPorAqui"
-        android:textColor="@color/md_black_1000"
+        android:textColor="@color/md_white_1000"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -34,7 +45,7 @@
         android:fontFamily="sans-serif-black"
         android:onClick="onClick"
         android:text="@string/txt_registro"
-        android:textColor="@color/md_red_600"
+        android:textColor="@color/md_yellow_400"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
