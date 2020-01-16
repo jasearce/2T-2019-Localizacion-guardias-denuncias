@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -179,10 +180,10 @@ public class LoginActivity extends AppCompatActivity {
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
         if(null != activeNetwork){
             if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
-                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
             }
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",

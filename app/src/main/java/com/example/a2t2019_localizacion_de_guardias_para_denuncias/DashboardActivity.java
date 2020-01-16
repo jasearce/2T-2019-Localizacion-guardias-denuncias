@@ -6,8 +6,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,7 +33,6 @@ public class DashboardActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     public DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
         fragmentTransaction2.replace(R.id.fragment_container, mapaFragment,"");
         fragmentTransaction2.commit();
-
+        checkConnection();
     }
 
     /**
@@ -134,29 +136,33 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
+    public void checkConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "No hay conexion a Internet",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onStart() {
         //Chequeamos el status
         checkUserStatus();
         super.onStart();
     }
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Obtenemos el ID del item del menu
-        int id = item.getItemId();
-        if(id == R.id.action_logout){
-            firebaseAuth.signOut();
-            checkUserStatus();
-
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }

@@ -38,6 +38,17 @@
     <string name="txtBtnDrogas">Venta de drogas</string>
     <string name="txtBtnOtro">Otro delito</string>
     <string name="txtSeccionDenuncias">Sección de delitos</string>
+    <string name="txtChooseUser">Usuario</string>
+    <string name="txtChooseGuardia">Guardia</string>
+    <string name="txtChooseAdmin">Administrador</string>
+    <string name="txtTituloChooseUser">¿Qué tipo de Usuario es?</string>
+    <string name="imgFondoUser">fondoUser</string>
+    <string name="imgFondoGuard">fondoGuard</string>
+    <string name="imgFondoAdmin">fondoAdmin</string>
+    <string name="txtReportarArea">Área</string>
+    <string name="txtReportarDesc">Descripción</string>
+    <string name="editTextPistaReporte">Ingrese descripción del crimen</string>
+    <string name="btnDenunciar">Denunciar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

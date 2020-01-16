@@ -11,11 +11,13 @@
         android:id="@+id/area"
         android:layout_width="61dp"
         android:layout_height="22dp"
-        android:layout_marginTop="36dp"
-        android:text="Área"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/txtReportarArea"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +25,8 @@
         android:id="@+id/spinner"
         android:layout_width="271dp"
         android:layout_height="25dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/area" />
@@ -36,7 +38,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="20dp"
-        android:text="Descripción"
+        android:text="@string/txtReportarDesc"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -48,9 +50,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
+        android:importantForAutofill="no"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Ingrese Drescripción del crimen"
+        android:hint="@string/editTextPistaReporte"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
@@ -60,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:onClick="Denunciar"
-        android:text="Denunciar"
+        android:text="@string/btnDenunciar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"

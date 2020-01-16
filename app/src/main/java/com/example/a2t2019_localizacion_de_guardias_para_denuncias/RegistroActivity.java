@@ -173,7 +173,7 @@ public class RegistroActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         if(null != activeNetwork){
             if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
-                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
             }
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
