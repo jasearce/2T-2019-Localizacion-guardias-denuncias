@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private VideoView videoBackground;
     public MediaPlayer mMediaPlayer;
     int currentVideoPosition;
+    private long tiempoPresionAtras = 0;
+    private Toast backToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         txtRegistrarse = findViewById(R.id.txtRegistro);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(tiempoPresionAtras + 10000 > System.currentTimeMillis()){
+            backToast.cancel();
+            super.onBackPressed();
+            return;
+        }else{
+            backToast = Toast.makeText(getBaseContext(), "Saliendo...", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        tiempoPresionAtras = System.currentTimeMillis();
     }
 
     @Override

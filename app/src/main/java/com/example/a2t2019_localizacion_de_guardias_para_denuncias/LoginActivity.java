@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnLogin;
     public SignInButton mGoogleSignInBtn;
     public GoogleSignInClient mGoogleSignInClient;
+    private String token = null;
 
     public FirebaseAuth mAuth;
     public ProgressDialog progressDialog;
@@ -175,7 +177,11 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show());
     }
 
-
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
 
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
@@ -195,12 +201,19 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metodo login() permite iniciar sesion a un usuario ya registrado dentro de la base
+     * de datos de Firebase. El metodo a traves de signInWithEmailAndPassword verifica la existencia
+     * del usuario dentro de la base de datos.
+     *
+     * @param email ingresado dentro del screen de Login
+     * @param password ingresado dentro del screen de Login
+     */
     private void login(String email, String password){
         progressDialog.show();
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, task -> {
             if(task.isSuccessful()){
                 progressDialog.dismiss();
-                // Sign in success, update UI with the signed-in user's information
                 FirebaseUser user = mAuth.getCurrentUser();
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
