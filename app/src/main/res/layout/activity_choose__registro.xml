@@ -44,7 +44,7 @@
         android:layout_marginTop="96dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
-        android:text="@string/txtTituloChooseUser"
+        android:text="Registrarse como:"
         android:textColor="#14D152"
         android:textSize="30sp"
         android:textStyle="bold"

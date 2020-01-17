@@ -92,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (v.getId()){
             case R.id.btnLogin:
-                intent = new Intent(this,LoginActivity.class);
+                intent = new Intent(this,Choose_User.class);
                 startActivity(intent);
                 break;
             case R.id.txtRegistro:
-                intent = new Intent(this, RegistroActivity.class);
+                intent = new Intent(this, Choose_Registro.class);
                 startActivity(intent);
                 break;
         }
