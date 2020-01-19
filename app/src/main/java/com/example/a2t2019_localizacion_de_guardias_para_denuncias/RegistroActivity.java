@@ -11,9 +11,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,11 +56,9 @@ public class RegistroActivity extends AppCompatActivity {
         progressDialog.setMessage("Registrando usuario");
 
         mAuth = FirebaseAuth.getInstance();
-        checkConnection();
-        txtIniciarSesion.setOnClickListener(v -> {
-            startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
-            finish();
-        });
+        this.checkConnection();
+        txtIniciarSesion.setOnClickListener(this::irALoginActivity);
+
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();
@@ -75,6 +73,15 @@ public class RegistroActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metodo para pasar de la actividad de Registro hacia Login en caso de ya posee
+     * una cuenta creada en la app
+     * @param view que une la parte grafica con la parte logica de la app
+     */
+    public void irALoginActivity(View view){
+        startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
+        finish();
+    }
     /**
      * Autor: Javier Arce
      * Metodo para validar los campos del registro de usuario, el cual retorna un booleano el cual
@@ -175,9 +182,9 @@ public class RegistroActivity extends AppCompatActivity {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         if(null != activeNetwork){
-            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+            /*if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
                 //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
-            }
+            }*/
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
             }
@@ -219,14 +226,14 @@ public class RegistroActivity extends AppCompatActivity {
                         hashMap.put("Imagen","");
 
 
-                            //Instancia de Firebase
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("Usuarios");
-                            reference.child(uid).setValue(hashMap);
-                            Toast.makeText(RegistroActivity.this, "Registro exitoso",
-                                    Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegistroActivity.this, DashboardActivity.class));
-                            finish();
+                        //Instancia de Firebase
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference reference = database.getReference("Usuarios");
+                        reference.child(uid).setValue(hashMap);
+                        Toast.makeText(RegistroActivity.this, "Registro exitoso",
+                                      Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegistroActivity.this, DashboardActivity.class));
+                        finish();
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(RegistroActivity.this, "Autenticacion falló",
