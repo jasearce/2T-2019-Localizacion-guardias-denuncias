@@ -32,25 +32,50 @@ public class HomeFragment extends Fragment {
         btnOtroDelito = view.findViewById(R.id.btnDenunciaOtro);
 
         btnRobo.setOnClickListener(v -> {
+<<<<<<< HEAD
             getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+=======
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+>>>>>>> master
             getActivity().finish();
         });
 
         btnAgresion.setOnClickListener(v -> {
+<<<<<<< HEAD
             getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+=======
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+>>>>>>> master
             getActivity().finish();
         });
 
         btnDrogas.setOnClickListener(v -> {
+<<<<<<< HEAD
             getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
+=======
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+>>>>>>> master
             getActivity().finish();
         });
 
         btnOtroDelito.setOnClickListener(v -> {
+<<<<<<< HEAD
             getActivity().startActivity(new Intent(getActivity(), ReporteCrimenActivity.class));
             getActivity().finish();
         });
 
+=======
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            getActivity().finish();
+        });
+
+
+
+>>>>>>> master
         return view;
     }
 

@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -30,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnLogin;
     public SignInButton mGoogleSignInBtn;
     public GoogleSignInClient mGoogleSignInClient;
+    private String token = null;
 
     public FirebaseAuth mAuth;
     public ProgressDialog progressDialog;
@@ -136,7 +140,10 @@ public class LoginActivity extends AppCompatActivity {
                             String userEmail = user.getEmail();
                             String uid = user.getUid();
                             String nombres = user.getDisplayName();
-
+                            String nombre=acct.getGivenName().toString().toUpperCase();
+                            String apellido=acct.getFamilyName().toString().toUpperCase();
+                            Uri urlFoto= acct.getPhotoUrl();
+                            String imagen=urlFoto.toString();
                             System.out.println(nombres);
 
                             String telefono = user.getPhoneNumber();
@@ -145,10 +152,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             hashMap.put("Email",userEmail);
                             hashMap.put("UID",uid);
-                            hashMap.put("Nombre","");
-                            hashMap.put("Apellidos","");
+                            hashMap.put("Nombre",nombre);
+                            hashMap.put("Apellidos",apellido);
                             hashMap.put("Telefono",telefono);
-                            hashMap.put("Imagen","");
+                            hashMap.put("Imagen",imagen);
 
                             //Instancia de Firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -170,15 +177,19 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show());
     }
 
-
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
 
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
         if(null != activeNetwork){
             if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
-                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
             }
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",
@@ -190,12 +201,19 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metodo login() permite iniciar sesion a un usuario ya registrado dentro de la base
+     * de datos de Firebase. El metodo a traves de signInWithEmailAndPassword verifica la existencia
+     * del usuario dentro de la base de datos.
+     *
+     * @param email ingresado dentro del screen de Login
+     * @param password ingresado dentro del screen de Login
+     */
     private void login(String email, String password){
         progressDialog.show();
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, task -> {
             if(task.isSuccessful()){
                 progressDialog.dismiss();
-                // Sign in success, update UI with the signed-in user's information
                 FirebaseUser user = mAuth.getCurrentUser();
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();

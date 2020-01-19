@@ -8,7 +8,11 @@ public class Ubicacion {
     public Ubicacion() {
     }
 
+<<<<<<< HEAD
     public Ubicacion(double latitud, double longitud){
+=======
+    public Ubicacion(double latitud, double longitud) {
+>>>>>>> master
         this.latitud = latitud;
         this.longitud = longitud;
     }

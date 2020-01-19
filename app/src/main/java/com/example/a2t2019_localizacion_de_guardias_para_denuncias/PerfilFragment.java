@@ -1,9 +1,8 @@
 package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,20 +20,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class PerfilFragment extends Fragment {
 
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference reference;
-    public ImageView avatarUser;
-    public TextView txtID, txtNombre, txtApellidos, txtTelefono, txtEmail, txtCuenta;
-    public Button btnLogout;
+    private ImageView avatarUser;
+    private TextView txtID, txtNombre, txtApellidos, txtTelefono, txtEmail, txtCuenta;
+    private Button btnLogout;
 
 
     public PerfilFragment() {
@@ -47,12 +42,12 @@ public class PerfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         /*Inicializamos la Firebase*/
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("Usuarios");
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference reference = firebaseDatabase.getReference("Usuarios");
 
-        avatarUser = view.findViewById(R.id.imv_foto);
+        avatarUser = view.findViewById(R.id.profile_image);
         txtID = view.findViewById(R.id.txt_userID);
         txtNombre = view.findViewById(R.id.txt_nombre);
         txtApellidos = view.findViewById(R.id.txt_apellidos);
@@ -64,8 +59,12 @@ public class PerfilFragment extends Fragment {
         btnLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             getActivity().finish();
-            getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
 
+            //Evitar regresar al Login con la flecha de retorno del celular
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            getActivity().startActivity(intent);
         });
 
         Query query = reference.orderByChild("Email").equalTo(user.getEmail());
@@ -76,16 +75,20 @@ public class PerfilFragment extends Fragment {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
 
                     /*Obtenemos la informacion*/
-                    String uid = "" + snapshot.child("UID").getValue();
+                    //String uid = "" + snapshot.child("UID").getValue();
                     String nombre = "" + snapshot.child("Nombre").getValue();
                     String apellidos = "" + snapshot.child("Apellidos").getValue();
                     String email = "" + snapshot.child("Email").getValue();
                     String telefono = "" + snapshot.child("Telefono").getValue();
-                    //String fotoPerfil = "" + snapshot.child("Imagen").getValue();
-
+                    String fotoPerfil = "" + snapshot.child("Imagen").getValue();
+                    Uri urlfoto=Uri.parse(fotoPerfil);
+                    if(!fotoPerfil.isEmpty()){
+                        Glide.with(getActivity()).load(urlfoto).centerCrop().into(avatarUser);
+                    }
 
                     /*Colocamos la informacion obtenida del Firebase en el View*/
-                    txtID.setText(uid);
+                    String formato = nombre + " " + apellidos;
+                    txtID.setText(formato);
                     txtNombre.setText(nombre);
                     txtApellidos.setText(apellidos);
                     txtEmail.setText(email);

@@ -11,25 +11,23 @@
         android:layout_height="wrap_content"
         android:background="@color/md_blue_grey_500_75"
         android:paddingBottom="5dp">
-        
+
         <RelativeLayout
             android:id="@+id/imgPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@drawable/circulo_borde"
             android:layout_centerHorizontal="true">
 
-            <ImageView
-                android:id="@+id/imv_foto"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:adjustViewBounds="true"
-                android:layout_margin="9dp"
-                android:background="@drawable/circulo"
-                android:scaleType="centerInside"
-                android:src="@drawable/rsz_logo_security"/>
-            
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/rsz_logo_security"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"/>
+
         </RelativeLayout>
         
         <TextView

@@ -62,10 +62,13 @@ public class RegistroActivity extends AppCompatActivity {
         btnRegistro.setOnClickListener(v -> {
             String email = mEmailEt.getText().toString();
             String password = mPassEt.getText().toString();
+            String nombre = mNombreEt.getText().toString().toUpperCase();
+            String apellido = mApellidosEt.getText().toString().toUpperCase();
+            String telefono = mTelefonoEt.getText().toString();
             if(!validarFormulario()){
                 Toast.makeText(this, "Revise la solicitud de creacion de usuario por favor!",Toast.LENGTH_SHORT).show();
             }else{
-                registrar(email,password);
+                registrar(email,password,nombre,apellido,telefono);
             }
         });
     }
@@ -164,13 +167,14 @@ public class RegistroActivity extends AppCompatActivity {
      * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
      * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
      */
+
     public void checkConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         if(null != activeNetwork){
             if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
-                Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
             }
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",Toast.LENGTH_SHORT).show();
@@ -179,30 +183,34 @@ public class RegistroActivity extends AppCompatActivity {
             Toast.makeText(this, "No hay conexion a Internet",Toast.LENGTH_SHORT).show();
         }
     }
-    private void registrar(String email,String password){
+
+    /**
+     * Metodo registrar() permite registrar al usuario mediante parametro solicitados
+     * en el screen de Registro. El metodo guarda en Firebase los datos principales
+     * requeridos en la pantalla de registro
+     *
+     * @param email ingresado en la parte del EditText
+     * @param password ingresado en la parte del EditText
+     * @param nombre ingresado en la parte del EditText
+     * @param apellido ingresado en la parte del EditText
+     * @param telefono ingresado en la parte del EditText
+     */
+    private void registrar(String email,String password, String nombre, String apellido, String telefono){
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
                         progressDialog.dismiss();
+
                         FirebaseUser user = mAuth.getCurrentUser();
-                        //Obtengo el email y el id del usuario ingresado
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
-                        String nombres = user.getDisplayName();
 
-                        //Verificar como se esta guardando el nombre
-                        System.out.println(nombres);
-
-                        String telefono = user.getPhoneNumber();
-                        //Guardo en un HashMap
                         HashMap<Object,String> hashMap = new HashMap<>();
-
                         hashMap.put("Email",userEmail);
                         hashMap.put("UID",uid);
-                        hashMap.put("Nombre","");
-                        hashMap.put("Apellidos","");
+                        hashMap.put("Nombre",nombre);
+                        hashMap.put("Apellidos",apellido);
                         hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
 
@@ -215,7 +223,6 @@ public class RegistroActivity extends AppCompatActivity {
                         startActivity(new Intent(RegistroActivity.this, DashboardActivity.class));
                         finish();
                     } else {
-                        // If sign in fails, display a message to the user.
                         progressDialog.dismiss();
                         Toast.makeText(RegistroActivity.this, "Autenticacion falló",
                                 Toast.LENGTH_SHORT).show();
