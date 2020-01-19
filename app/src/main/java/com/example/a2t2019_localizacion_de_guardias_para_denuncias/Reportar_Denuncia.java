@@ -2,6 +2,9 @@ package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class Reportar_Denuncia extends AppCompatActivity {
 
@@ -37,11 +42,40 @@ public class Reportar_Denuncia extends AppCompatActivity {
 
     //Método del botón
     public void Denunciar(View view){
-        String descripcion_String= description_txt.getText().toString();
+        if(!checkConnection()){
+            Toast.makeText(this, "No hay conexion a Internet",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            String descripcion_String= description_txt.getText().toString();
+            String seleccion=spinner1.getSelectedItem().toString();
+            Toast.makeText(this,"Denuncia realizada con exito",Toast.LENGTH_LONG).show();
+        }
+    }
 
-        String seleccion=spinner1.getSelectedItem().toString();
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
+    public boolean checkConnection(){
+        boolean verificar = true;
 
-        Toast.makeText(this,"Denuncia realizada con exito",Toast.LENGTH_LONG).show();
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            verificar = false;
+        }
+
+        return verificar;
     }
 
 
