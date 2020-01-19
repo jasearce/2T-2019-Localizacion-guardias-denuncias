@@ -25,7 +25,7 @@ public class Choose_User extends AppCompatActivity {
      * Metodo onClick
      * Permite el cambio de contexto entre pantalla; ademas que permite enviar el tipo de cuenta por el cual
      * se va a realizar el inicio de sesion
-     * @param view conexion entre paret grafica y logica
+     * @param view conexion entre parte grafica y logica
      */
     public void onClick(View view){
         Intent intent;
