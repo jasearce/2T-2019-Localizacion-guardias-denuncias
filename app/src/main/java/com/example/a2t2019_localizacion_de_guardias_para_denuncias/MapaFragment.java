@@ -93,8 +93,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
                 }
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Ubicacion ubi = snapshot.getValue(Ubicacion.class);
-                    Double latitud = ubi.getLatitud();
-                    Double longitud = ubi.getLongitud();
+                    double latitud = ubi.getLatitud();
+                    double longitud = ubi.getLongitud();
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     agregarGuardias();
@@ -117,16 +117,6 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-        /*
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247, -74.044502))
-                .title("Estatua de la Libertad"));
-        CameraPosition liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502))
-                .zoom(16)
-                .bearing(0)
-                .tilt(45)
-                .build();
-        */
-
         //Registros del dispostivo IoT/
         mDatabase.child("registro").addValueEventListener(new ValueEventListener() {
             @Override
@@ -154,7 +144,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println(databaseError.toException());
+                System.out.println("Fallo en obtener datos de Firebase");
             }
         });
     }
@@ -175,6 +165,16 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(-2.145925806984807, -79.9647382958111)).title("FICT").snippet("Guardia en parqueadero de FICT, frente al Coliseo").icon(BitmapDescriptorFactory.fromResource(R.drawable.police2)));
 
     }
+
+    /**
+     * Metooo cambioALatLng
+     * Recibe los string obtenidos de la Firebase para convertirlos de su valor String
+     * decimal hacia un valor de  double que se utilizara para colocar dentro del marker
+     * de GoogleMaps.
+     * @param latitud define la latitud a la cual se encuentra el guardia
+     * @param longitud define la longiutd a la cual se encuentra el guardia
+     * @return un objeto tipo Ubicacion que posee latitud y longitud
+     */
     private Ubicacion cambioALatLng(String latitud, String longitud){
         Ubicacion ubicacion;
         double dLatitud;

@@ -19,25 +19,32 @@ public class Choose_User extends AppCompatActivity {
         user_bttn = findViewById(R.id.user_bttn);
         guardian_bttn = findViewById(R.id.guardian_bttn);
         admin_bttn = findViewById(R.id.admin_bttn);
-
-        //user_bttn.setOnClickListener(v -> startActivity(new Intent(Choose_User.this,LoginActivity.class)));
     }
 
+    /**
+     * Metodo onClick
+     * Permite el cambio de contexto entre pantalla; ademas que permite enviar el tipo de cuenta por el cual
+     * se va a realizar el inicio de sesion
+     * @param view conexion entre paret grafica y logica
+     */
     public void onClick(View view){
         Intent intent;
         switch(view.getId()){
             case R.id.user_bttn:
                 intent = new Intent(Choose_User.this, LoginActivity.class);
+                intent.putExtra("tipo de cuenta", "Cliente");   //pasamos el tipo de informacion al nodo de usuarios
                 startActivity(intent);
                 finish();
                 break;
             case R.id.guardian_bttn:
                 intent = new Intent(Choose_User.this, LoginGuardiaActivity.class);
+                intent.putExtra("tipo de cuenta", "Guardia");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.admin_bttn:
                 intent = new Intent(Choose_User.this, LoginAdminActivity.class);
+                intent.putExtra("tipo de cuenta", "Administrador");
                 startActivity(intent);
                 finish();
                 break;

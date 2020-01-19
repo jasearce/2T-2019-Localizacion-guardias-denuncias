@@ -44,4 +44,6 @@ public class Reportar_Denuncia extends AppCompatActivity {
         Toast.makeText(this,"Denuncia realizada con exito",Toast.LENGTH_LONG).show();
     }
 
+
+
 }

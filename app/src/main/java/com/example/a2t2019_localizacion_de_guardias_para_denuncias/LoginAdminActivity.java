@@ -77,9 +77,10 @@ public class LoginAdminActivity extends AppCompatActivity {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
         if(null != activeNetwork){
+            /*
             if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
                 //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
-            }
+            }*/
             if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
                 Toast.makeText(this, "Datos moviles: Encendido",
                         Toast.LENGTH_SHORT).show();

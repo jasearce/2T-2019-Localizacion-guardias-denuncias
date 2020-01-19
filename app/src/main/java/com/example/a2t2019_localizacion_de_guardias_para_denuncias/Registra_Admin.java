@@ -184,6 +184,7 @@ public class Registra_Admin extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
+                        String tipoCuenta = getIntent().getStringExtra("tipo de cuenta");
 
                         HashMap<Object,String> hashMap = new HashMap<>();
                         hashMap.put("Email",userEmail);
@@ -192,6 +193,7 @@ public class Registra_Admin extends AppCompatActivity {
                         hashMap.put("Apellidos",apellido);
                         hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
+                        hashMap.put("Tipo de cuenta", tipoCuenta);
 
 
                         //Instancia de Firebase

@@ -65,10 +65,10 @@ public class RegistroActivity extends AppCompatActivity {
             String nombre = mNombreEt.getText().toString().toUpperCase();
             String apellido = mApellidosEt.getText().toString().toUpperCase();
             String telefono = mTelefonoEt.getText().toString();
-            if(!validarFormulario()){
+            if(!this.validarFormulario()){
                 Toast.makeText(this, "Revise la solicitud de creacion de usuario por favor!",Toast.LENGTH_SHORT).show();
             }else{
-                registrar(email,password,nombre,apellido,telefono);
+                this.registrar(email,password,nombre,apellido,telefono);
             }
         });
     }
@@ -205,8 +205,6 @@ public class RegistroActivity extends AppCompatActivity {
      * @param telefono ingresado en la parte del EditText
      */
     private void registrar(String email,String password, String nombre, String apellido, String telefono){
-
-
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -216,6 +214,7 @@ public class RegistroActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         String userEmail = user.getEmail();
                         String uid = user.getUid();
+                        String tipoCuenta = getIntent().getStringExtra("tipo de cuenta");
 
                         HashMap<Object,String> hashMap = new HashMap<>();
                         hashMap.put("Email",userEmail);
@@ -224,6 +223,7 @@ public class RegistroActivity extends AppCompatActivity {
                         hashMap.put("Apellidos",apellido);
                         hashMap.put("Telefono",telefono);
                         hashMap.put("Imagen","");
+                        hashMap.put("Tipo de cuenta", tipoCuenta);
 
 
                         //Instancia de Firebase

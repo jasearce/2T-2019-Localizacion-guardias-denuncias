@@ -25,16 +25,19 @@ public class Choose_Registro extends AppCompatActivity {
         switch(view.getId()){
             case R.id.user_bttn:
                 intent = new Intent(Choose_Registro.this, RegistroActivity.class);
+                intent.putExtra("tipo de cuenta", "Cliente");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.guardian_bttn:
                 intent = new Intent(Choose_Registro.this, Registro_Guardia.class);
+                intent.putExtra("tipo de cuenta", "Guardia");
                 startActivity(intent);
                 finish();
                 break;
             case R.id.admin_bttn:
                 intent = new Intent(Choose_Registro.this, Registra_Admin.class);
+                intent.putExtra("tipo de cuenta", "Administrador");
                 startActivity(intent);
                 finish();
                 break;

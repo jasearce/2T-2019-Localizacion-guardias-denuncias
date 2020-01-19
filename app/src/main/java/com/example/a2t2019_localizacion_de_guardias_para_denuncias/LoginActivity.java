@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnLogin;
     public SignInButton mGoogleSignInBtn;
     public GoogleSignInClient mGoogleSignInClient;
-    private String token = null;
 
     public FirebaseAuth mAuth;
     public ProgressDialog progressDialog;
@@ -85,28 +84,44 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             String email = userEditText.getText().toString();
             String password = passEditText.getText().toString();
-
-            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                userEditText.setError("Formato de Email invalido");
-                userEditText.setFocusable(true);
-            }
-            if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                Toast.makeText(LoginActivity.this, "Por favor ingrese su usuario y contraseña",
-                        Toast.LENGTH_SHORT).show();
-                userEditText.setFocusable(true);
-                passEditText.setFocusable(true);
+            if(!this.validarIngresoLogin(email, password)){
+                Toast.makeText(this, "Por favor revise su usuario y contraseña",Toast.LENGTH_SHORT).show();
             }
             else{
                 userEditText.setError(null);
                 passEditText.setError(null);
-                login(email,password);
+                this.login(email,password);
             }
         });
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Iniciando sesion");
 
-        checkConnection();
+        this.checkConnection();
+    }
+    /**
+     * Metodo validarIngresoLogin
+     * Permite verificar que los parametros ingresados en los EditText de la parte grafica hayan
+     * sido llenaodos correctamente
+     * @param email mail del usuario ingresado
+     * @param password contrasena del usuario ingresado
+     * @return booleano de verificacion del estado del formulario
+     */
+    public boolean validarIngresoLogin(String email, String password){
+        boolean valido = true;
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            userEditText.setError("Formato de Email invalido");
+            userEditText.setFocusable(true);
+            valido = false;
+        }
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            Toast.makeText(LoginActivity.this, "Por favor ingrese su usuario y contraseña",
+                    Toast.LENGTH_SHORT).show();
+            userEditText.setFocusable(true);
+            passEditText.setFocusable(true);
+            valido = false;
+        }
+        return valido;
     }
 
     @Override
@@ -133,7 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
-
                         /*Si ingresa por primera vez el usuario se muestra us informacion de perfil de la cuenta de Google*/
                         if(task.getResult().getAdditionalUserInfo().isNewUser()){
                             //Obtengo el email y el id del usuario ingresado
@@ -144,9 +158,9 @@ public class LoginActivity extends AppCompatActivity {
                             String apellido=acct.getFamilyName().toString().toUpperCase();
                             Uri urlFoto= acct.getPhotoUrl();
                             String imagen=urlFoto.toString();
-                            System.out.println(nombres);
-
                             String telefono = user.getPhoneNumber();
+                            String tipoCuenta = getIntent().getStringExtra("tipo de cuenta");
+
                             //Guardo en un HashMap
                             HashMap<Object,String> hashMap = new HashMap<>();
 
@@ -156,6 +170,7 @@ public class LoginActivity extends AppCompatActivity {
                             hashMap.put("Apellidos",apellido);
                             hashMap.put("Telefono",telefono);
                             hashMap.put("Imagen",imagen);
+                            hashMap.put("Tipo de cuenta", tipoCuenta);
 
                             //Instancia de Firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -215,7 +230,9 @@ public class LoginActivity extends AppCompatActivity {
             if(task.isSuccessful()){
                 progressDialog.dismiss();
                 FirebaseUser user = mAuth.getCurrentUser();
-                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
             }else{
                 progressDialog.dismiss();
@@ -224,5 +241,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         }).addOnFailureListener(e -> Toast.makeText(LoginActivity.this, ""+e.getMessage(),
                 Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+            finish();
+        }
     }
 }

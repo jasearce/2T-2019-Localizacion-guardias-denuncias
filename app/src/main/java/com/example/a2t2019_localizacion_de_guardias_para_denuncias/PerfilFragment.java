@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -57,13 +56,12 @@ public class PerfilFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
 
         btnLogout.setOnClickListener(v -> {
+            //SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
             FirebaseAuth.getInstance().signOut();
             getActivity().finish();
             Intent intent = new Intent(getActivity(), LoginActivity.class);
-
             //Evitar regresar al Login con la flecha de retorno del celular
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             getActivity().startActivity(intent);
         });
 
@@ -81,6 +79,7 @@ public class PerfilFragment extends Fragment {
                     String email = "" + snapshot.child("Email").getValue();
                     String telefono = "" + snapshot.child("Telefono").getValue();
                     String fotoPerfil = "" + snapshot.child("Imagen").getValue();
+                    String tipoCuenta = "" + snapshot.child("Tipo de cuenta").getValue();
                     Uri urlfoto=Uri.parse(fotoPerfil);
                     if(!fotoPerfil.isEmpty()){
                         Glide.with(getActivity()).load(urlfoto).centerCrop().into(avatarUser);
@@ -93,6 +92,7 @@ public class PerfilFragment extends Fragment {
                     txtApellidos.setText(apellidos);
                     txtEmail.setText(email);
                     txtTelefono.setText(telefono);
+                    txtCuenta.setText(tipoCuenta);
                 }
             }
 
