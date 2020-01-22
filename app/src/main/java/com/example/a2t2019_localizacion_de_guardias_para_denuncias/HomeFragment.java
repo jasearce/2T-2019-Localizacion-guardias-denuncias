@@ -18,6 +18,7 @@ import android.widget.Button;
 public class HomeFragment extends Fragment {
 
     Button btnRobo, btnAgresion, btnDrogas, btnOtroDelito;
+    static public String tipo_delito;
 
 
     public HomeFragment() {
@@ -39,24 +40,28 @@ public class HomeFragment extends Fragment {
         btnRobo.setOnClickListener(v -> {
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            tipo_delito= btnRobo.getText().toString();
             getActivity().finish();
         });
 
         btnAgresion.setOnClickListener(v -> {
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            tipo_delito= btnAgresion.getText().toString();
             getActivity().finish();
         });
 
         btnDrogas.setOnClickListener(v -> {
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            tipo_delito= btnDrogas.getText().toString();
             getActivity().finish();
         });
 
         btnOtroDelito.setOnClickListener(v -> {
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
             getActivity().startActivity(new Intent(getActivity(), Reportar_Denuncia.class));
+            tipo_delito= btnOtroDelito.getText().toString();
             getActivity().finish();
         });
 

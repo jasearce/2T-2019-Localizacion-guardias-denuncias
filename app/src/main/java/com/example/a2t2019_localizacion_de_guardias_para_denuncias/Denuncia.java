@@ -3,41 +3,59 @@ package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 import java.util.Date;
 
 public class Denuncia {
-
-    private Usuario usuario;
+    private String id;
+    private String tipo_delito;
+    private String nombre;
+    private String fecha;
+    private double latitud;
+    private double longitud;
+    private String area;
     private String descripcion;
-    private Date fecha;
 
     public Denuncia(){
+
     }
 
-    public Denuncia(Usuario usuario, String descripcion, Date fecha) {
-        this.usuario = usuario;
-        this.descripcion = descripcion;
+    public Denuncia(String id,String tipo_delito, String nombre, String fecha, double latitud, double longitud, String area, String descripcion) {
+        this.id = id;
+        this.tipo_delito=tipo_delito;
+        this.nombre = nombre;
         this.fecha = fecha;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.area = area;
+        this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getId() {
+        return id;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public String getTipo_delito() {
+        return tipo_delito;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public String getArea() {
+        return area;
     }
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 }

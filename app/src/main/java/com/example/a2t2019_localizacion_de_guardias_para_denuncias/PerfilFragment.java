@@ -68,6 +68,9 @@ public class PerfilFragment extends Fragment {
         Query query = reference.orderByChild("Email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
 
+
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
