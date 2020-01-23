@@ -32,6 +32,8 @@ public class DashboardActivity extends AppCompatActivity {
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
     private FusedLocationProviderClient fusedLocationClient;
     public DatabaseReference databaseReference;
+    public static double lat;
+    public static double lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,8 @@ public class DashboardActivity extends AppCompatActivity {
                     if (location != null) {
                         // Logic to handle location object
                         Log.e("Latitud: ",+location.getLatitude()+"Longitud: "+location.getLongitude());
+                        lat=location.getLatitude();
+                        lon=location.getLongitude();
                         HashMap<String,Object> latLng = new HashMap<>();
                         latLng.put("latitud",location.getLatitude());
                         latLng.put("longitud",location.getLongitude());

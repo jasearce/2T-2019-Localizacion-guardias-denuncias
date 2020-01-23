@@ -118,6 +118,8 @@ public class Reportar_Denuncia extends AppCompatActivity {
             String name= denunciante_name.getText().toString();
             String descripcion_String= descrip_txt.getText().toString();
             String area=spinner1.getSelectedItem().toString();
+            latitud=DashboardActivity.lat;
+            longitud=DashboardActivity.lon;
 
 
             //Calendar c = Calendar.getInstance();
