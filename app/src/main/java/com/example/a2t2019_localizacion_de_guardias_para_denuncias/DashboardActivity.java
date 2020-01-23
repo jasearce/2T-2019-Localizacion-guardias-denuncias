@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -83,6 +84,15 @@ public class DashboardActivity extends AppCompatActivity {
                         latLng.put("latitud",location.getLatitude());
                         latLng.put("longitud",location.getLongitude());
                         databaseReference.child("Ubicacion").push().setValue(latLng);
+                        Location guardiaCentral = new Location(" ");
+                        guardiaCentral.setLatitude(-2.148348477036179);
+                        guardiaCentral.setLongitude(-79.96371562917663);
+                        Log.e("Distancia: ", String.valueOf(location.distanceTo(guardiaCentral)));
+                        if(location.distanceTo(guardiaCentral) > 2000){
+                            Toast.makeText(this,"No hay guardias cercanos",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(this,"Por favor, asegúrese de tener el GPS activado",Toast.LENGTH_SHORT).show();
                     }
                 });
     }
