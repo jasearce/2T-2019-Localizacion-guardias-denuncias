@@ -11,12 +11,13 @@ public class Denuncia {
     private double longitud;
     private String area;
     private String descripcion;
+    private String estado;
 
     public Denuncia(){
 
     }
 
-    public Denuncia(String id,String tipo_delito, String nombre, String fecha, double latitud, double longitud, String area, String descripcion) {
+    public Denuncia(String id,String tipo_delito, String nombre, String fecha, double latitud, double longitud, String area, String descripcion,String estado) {
         this.id = id;
         this.tipo_delito=tipo_delito;
         this.nombre = nombre;
@@ -25,6 +26,7 @@ public class Denuncia {
         this.longitud = longitud;
         this.area = area;
         this.descripcion = descripcion;
+        this.estado=estado;
     }
 
     public String getId() {
@@ -58,4 +60,6 @@ public class Denuncia {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public String getEstado() { return estado; }
 }

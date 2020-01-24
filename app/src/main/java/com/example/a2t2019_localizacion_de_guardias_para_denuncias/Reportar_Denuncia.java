@@ -93,7 +93,6 @@ public class Reportar_Denuncia extends AppCompatActivity {
                 }
 
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -134,7 +133,7 @@ public class Reportar_Denuncia extends AppCompatActivity {
             if(!TextUtils.isEmpty(descripcion_String)){
                 String id=databaseDenuncia.push().getKey();
 
-                Denuncia denuncia=new Denuncia(id,HomeFragment.tipo_delito,name,date_String,latitud,longitud,area,descripcion_String);
+                Denuncia denuncia=new Denuncia(id,HomeFragment.tipo_delito,name,date_String,latitud,longitud,area,descripcion_String,"NO");
 
                 databaseDenuncia.child(id).setValue(denuncia);
                 Toast.makeText(this,"Denuncia realizada con exito",Toast.LENGTH_LONG).show();

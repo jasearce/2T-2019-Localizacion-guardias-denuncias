@@ -100,7 +100,7 @@ public class LoginGuardiaActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 progressDialog.dismiss();
 
-                startActivity(new Intent(LoginGuardiaActivity.this, DashboardActivity.class));
+                startActivity(new Intent(LoginGuardiaActivity.this, ListaDenuncias.class));
                 finish();
             } else {
                 progressDialog.dismiss();
