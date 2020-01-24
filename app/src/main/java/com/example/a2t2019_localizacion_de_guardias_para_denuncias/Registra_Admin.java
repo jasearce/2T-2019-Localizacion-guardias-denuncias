@@ -202,7 +202,7 @@ public class Registra_Admin extends AppCompatActivity {
                         reference.child(uid).setValue(hashMap);
                         Toast.makeText(Registra_Admin.this, "Registro exitoso",
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Registra_Admin.this, DashboardActivity.class));
+                        startActivity(new Intent(Registra_Admin.this, MapaAdministradorActivity.class));
                         finish();
                     } else {
                         progressDialog.dismiss();

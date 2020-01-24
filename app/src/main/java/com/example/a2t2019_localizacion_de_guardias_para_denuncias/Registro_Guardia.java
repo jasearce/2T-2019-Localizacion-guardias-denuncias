@@ -204,7 +204,7 @@ public class Registro_Guardia extends AppCompatActivity {
                         reference.child(uid).setValue(hashMap);
                         Toast.makeText(Registro_Guardia.this, "Registro exitoso",
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Registro_Guardia.this, DashboardActivity.class));
+                        startActivity(new Intent(Registro_Guardia.this, MapaDelitoActivity.class));
                         finish();
                     } else {
                         progressDialog.dismiss();
