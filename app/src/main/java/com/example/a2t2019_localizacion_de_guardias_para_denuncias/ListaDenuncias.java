@@ -56,7 +56,7 @@ public class ListaDenuncias extends AppCompatActivity {
 
                         TextView nameTextView = new TextView(getApplicationContext());
 
-                        nameTextView.setText(delito + " " + fecha + " " + area);
+                        nameTextView.setText("** "+delito + " || " + fecha+" **");
                         nameTextView.setClickable(true);
                         nameTextView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -72,12 +72,10 @@ public class ListaDenuncias extends AppCompatActivity {
                                 i.putExtra("long", longitud_real);
 
                                 startActivity(i);
-
                             }
                         });
-                        nameTextView.setTextColor(Color.BLACK);
-
-                        nameTextView.setTextSize(20);
+                        nameTextView.setTextColor(Color.WHITE);
+                        nameTextView.setTextSize(18);
                         contenedorResultado.addView(nameTextView);
                     }
                 }

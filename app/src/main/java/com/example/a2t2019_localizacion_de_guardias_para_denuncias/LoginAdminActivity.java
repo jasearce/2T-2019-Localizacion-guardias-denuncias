@@ -96,8 +96,7 @@ public class LoginAdminActivity extends AppCompatActivity {
         Task<AuthResult> authResultTask = mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 progressDialog.dismiss();
-
-                startActivity(new Intent(LoginAdminActivity.this, DashboardActivity.class));
+                startActivity(new Intent(LoginAdminActivity.this, MapaAdministradorActivity.class));
                 finish();
             } else {
                 progressDialog.dismiss();

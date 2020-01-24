@@ -95,7 +95,7 @@ public class PerfilFragment extends Fragment {
                     txtApellidos.setText(apellidos);
                     txtEmail.setText(email);
                     txtTelefono.setText(telefono);
-                    txtCuenta.setText(tipoCuenta);
+                    txtCuenta.setText("CLIENTE");
                 }
             }
 

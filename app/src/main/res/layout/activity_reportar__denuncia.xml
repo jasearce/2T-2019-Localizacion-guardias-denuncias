@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_denuncia"
+    android:background="@drawable/fondo_delitos_bg"
     tools:context=".Reportar_Denuncia">
 
     <TextView
@@ -12,6 +12,7 @@
         android:layout_width="61dp"
         android:layout_height="22dp"
         android:layout_marginStart="32dp"
+        android:textColor="@color/md_white_1000"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/txtReportarArea"
@@ -28,7 +29,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="20dp"
-        android:background="@color/md_text_white"
+        android:background="@color/md_white_1000_50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/area" />
 
@@ -41,6 +42,7 @@
         android:layout_marginTop="28dp"
         android:text="@string/txtReportarDesc"
         android:textSize="18sp"
+        android:textColor="@color/md_white_1000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -53,8 +55,10 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/md_text_white"
+        android:textColor="@color/md_white_1000"
+        android:background="@color/md_white_1000_50"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/editTextPistaReporte"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
@@ -65,11 +69,14 @@
 
     <Button
         android:id="@+id/denunciar_bttn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="148dp"
+        android:layout_height="69dp"
         android:layout_marginTop="76dp"
+        android:background="@drawable/button"
         android:onClick="Denunciar"
         android:text="@string/btnDenunciar"
+
+        android:textColor="@color/md_white_1000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +90,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:text="Denunciante:"
+        android:textColor="@color/md_white_1000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -93,6 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:textColor="@color/md_white_1000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />

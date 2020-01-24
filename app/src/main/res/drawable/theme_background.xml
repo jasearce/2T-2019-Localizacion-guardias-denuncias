@@ -2,11 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!--- Fondo del Splash Screen -->
     <item
-        android:drawable="@drawable/background"/>
+        android:drawable="@drawable/splashscreen_bg"/>
     <item>
         <!--- Icono de la aplicaciones a mostrar -->
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logo_power" />
+            android:src="@drawable/logo_power"/>
+
     </item>
-</layer-list>
+</>

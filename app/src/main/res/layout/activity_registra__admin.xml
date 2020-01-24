@@ -5,20 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistroActivity"
-    android:background="@drawable/inicio_sesion">
+    android:background="@drawable/sesion_bg">
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="303dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="301dp"
+        android:layout_height="31dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="@string/txtRegistro"
+        android:textColor="@color/md_white_1000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,6 +119,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="40dp"
+        android:textColor="@color/md_white_1000"
         android:text="@string/txtMensaje2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -144,29 +146,23 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/txtMensajeLogin"
         android:textColor="@color/md_white_1000_75"
         android:textSize="12sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtRetornoInicioSesion"
+        app:layout_constraintBottom_toTopOf="@+id/txtRetornoInicioSesion"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtRetornoInicioSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="172dp"
-        android:layout_marginRight="172dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="88dp"
+        android:layout_height="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/txtIniciaSesion"
         android:textColor="@color/md_yellow_400"
@@ -174,6 +170,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,33 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background">
-
-    <VideoView
-        android:id="@+id/videoBack"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0"/>
+    android:background="@drawable/sesion_bg">
 
     <TextView
         android:id="@+id/txtFrase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="205dp"
+        android:layout_height="44dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="84dp"
         android:fontFamily="sans-serif-light"
+        android:gravity="center"
         android:text="@string/text_nuevoPorAqui"
         android:textColor="@color/md_white_1000"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,17 +29,18 @@
         android:id="@+id/txtRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
         android:fontFamily="sans-serif-black"
+        android:gravity="center"
         android:onClick="onClick"
         android:text="@string/txt_registro"
         android:textColor="@color/md_yellow_400"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtFrase" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtBienvenida"
@@ -60,7 +51,7 @@
         android:layout_marginTop="208dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txt_bienvenida"
-        android:textColor="@color/md_text_white"
+        android:textColor="@color/md_white_1000"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

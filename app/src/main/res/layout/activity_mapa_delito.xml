@@ -4,34 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_denuncia"
+    android:background="@drawable/fondo_delitos_bg"
     android:orientation="vertical"
     tools:context=".MapaDelitoActivity">
 
     <LinearLayout
         android:id="@+id/mapa_delito"
         android:layout_width="match_parent"
-        android:layout_height="496dp"
+        android:layout_height="480dp"
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/fragment_container_delito"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="733dp" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/descripcion_delito"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/md_black_1000_25"
         android:orientation="vertical">
+
+
+
+        <TextView
+            android:id="@+id/delito_txt"
+            android:layout_width="139dp"
+            android:layout_height="22dp"
+            android:text="Delito"
+            android:gravity="center"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descripcion_txt"
+            android:layout_width="350dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/md_white_1000"
+            android:text="Descripcion"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delito_txt" />
+
+        <TextView
+            android:id="@+id/fecha_txt"
+            android:layout_width="256dp"
+            android:layout_height="23dp"
+            android:gravity="center"
+            android:textColor="@color/md_white_1000"
+            android:layout_marginTop="10dp"
+            android:text="Fecha"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcion_txt" />
+
+        <TextView
+            android:id="@+id/area_txt"
+            android:layout_width="113dp"
+            android:gravity="center"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/md_white_1000"
+            android:text="Area"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fecha_txt" />
+
+        <TextView
+            android:id="@+id/nombre_txt"
+            android:gravity="center"
+            android:layout_width="187dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/md_white_1000"
+            android:text="Nombre"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/area_txt" />
 
         <Button
             android:id="@+id/resolver_delito"
-            android:layout_width="match_parent"
+            android:background="@drawable/button"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
-            android:text="Resolver Delito" />
-    </LinearLayout>
+            android:text="Resolver Delito"
+            android:textColor="@color/md_white_1000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_txt"
+            app:layout_constraintVertical_bias="0.833" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

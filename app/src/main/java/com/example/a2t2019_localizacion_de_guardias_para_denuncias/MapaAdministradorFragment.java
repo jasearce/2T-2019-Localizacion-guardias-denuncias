@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
-
+ * Este fragmento nos permitira visualizar todos los delitos reportados para el administrador
  */
 public class MapaAdministradorFragment extends Fragment  implements OnMapReadyCallback {
     public GoogleMap mGoogleMap;
@@ -72,23 +72,34 @@ public class MapaAdministradorFragment extends Fragment  implements OnMapReadyCa
         uiSettings.setZoomControlsEnabled(true);
         mGoogleMap.setMyLocationEnabled(true);
 
-        LatLng ubicacion_delito = new LatLng(ListaDenuncias.latitud_delito, ListaDenuncias.longitud_delito);
-
         mDatabase.child("Denuncia").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for (DataSnapshot denunciaSnapshot : dataSnapshot.getChildren()) {
+                    String estado =denunciaSnapshot.child("estado").getValue().toString();
+                    String delito =denunciaSnapshot.child("tipo_delito").getValue().toString();
+                    String latitud = denunciaSnapshot.child("latitud").getValue().toString();
+                    String longitud = denunciaSnapshot.child("longitud").getValue().toString();
+                    String descripcion= denunciaSnapshot.child("descripcion").getValue().toString();
+                    Double latitudmap=Double.parseDouble(latitud);
+                    Double longitudmap=Double.parseDouble(longitud);
+                    LatLng delitomap = new LatLng(latitudmap,longitudmap);
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(delitomap));
+                    mGoogleMap.setMinZoomPreference(15);
+                    if(estado.equalsIgnoreCase("NO")){
+                        mGoogleMap.addMarker(new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.exe)).title(delito).snippet(descripcion).position(delitomap));
+                    }else{
+                        mGoogleMap.addMarker(new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.check)).title(delito).snippet(descripcion).position(delitomap));
+                    }
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
     });
-
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion_delito));
-        mGoogleMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.guardia_actual)).position(ubicacion_delito));
-        mGoogleMap.setMinZoomPreference(15);
     }
 }

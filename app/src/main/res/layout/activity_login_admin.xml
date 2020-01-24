@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginAdminActivity"
-    android:background="@drawable/inicio_sesion">
+    android:background="@drawable/sesion_bg">
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -66,7 +66,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txtApp"
-        android:textColor="@color/md_indigo_300"
+        android:textColor="@color/md_white_1000"
         android:textSize="40sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="@string/txtAppObj"
-        android:textColor="@color/md_indigo_300"
+        android:textColor="@color/md_white_1000"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"

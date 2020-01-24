@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MapaDelitoActivity"></activity>
+        <activity android:name=".MapaAdministradorActivity"></activity>
+        <activity android:name=".MapaDelitoActivity" />
         <activity android:name=".ListaDenuncias" />
         <activity android:name=".Guardia_Pantalla" />
         <activity android:name=".Registra_Admin" />

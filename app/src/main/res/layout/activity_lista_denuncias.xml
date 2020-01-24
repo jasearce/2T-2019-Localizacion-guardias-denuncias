@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/fondo_delitos_bg"
     tools:context=".ListaDenuncias">
 
     <LinearLayout
@@ -22,13 +22,19 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/total_resultados"
+                    android:id="@+id/toales_delitos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp" />
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#FFFF"
+                    android:text="LISTA DE DELITOS"
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:id="@+id/linealBusqueda"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">

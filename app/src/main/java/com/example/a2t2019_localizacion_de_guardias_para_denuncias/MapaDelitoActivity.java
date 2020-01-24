@@ -2,6 +2,7 @@ package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -30,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MapaDelitoActivity extends AppCompatActivity{
-    LinearLayout descripcion_delito;
+    ConstraintLayout descripcion_delito;
     String name, descripcion, delito, area, fecha, id, lati,longi;
     TextView namet, descripciont, delitot, fechat, areat;
     Button resolver_delito;
@@ -42,7 +43,7 @@ public class MapaDelitoActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa_delito);
         databaseD= FirebaseDatabase.getInstance().getReference();
-        descripcion_delito = (LinearLayout) findViewById(R.id.descripcion_delito);
+        descripcion_delito = (ConstraintLayout) findViewById(R.id.descripcion_delito);
 
         resolver_delito= (Button) findViewById(R.id.resolver_delito);
 
@@ -55,20 +56,22 @@ public class MapaDelitoActivity extends AppCompatActivity{
         lati= getIntent().getExtras().getString("lati");
         longi = getIntent().getExtras().getString("long");
 
-        namet=new TextView(getApplicationContext());
-        descripciont= new TextView(getApplicationContext());
-        delitot = new TextView(getApplicationContext());
-        fechat = new TextView(getApplicationContext());
-        areat = new TextView(getApplicationContext());
+        namet=(TextView)findViewById(R.id.nombre_txt);
+        descripciont= (TextView)findViewById(R.id.descripcion_txt);
+        delitot = (TextView)findViewById(R.id.delito_txt);
+        fechat = (TextView)findViewById(R.id.fecha_txt);
+        areat =(TextView)findViewById(R.id.area_txt);
         namet.setText(name);
         delitot.setText(delito);
         fechat.setText(fecha);
         areat.setText(area);
+        descripciont.setText(descripcion);
+        /*
         descripcion_delito.addView(delitot);
         descripcion_delito.addView(areat);
         descripcion_delito.addView(descripciont);
         descripcion_delito.addView(fechat);
-        descripcion_delito.addView(namet);
+        descripcion_delito.addView(namet);*/
 
         MapaDelitoFragment delitoFragment =new MapaDelitoFragment();
         FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
