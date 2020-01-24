@@ -1,6 +1,4 @@
-package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
-
-import java.util.Date;
+package com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias;
 
 public class Denuncia {
     private String id;

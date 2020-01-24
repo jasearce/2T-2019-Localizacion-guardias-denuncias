@@ -1,4 +1,4 @@
-package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
+package com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias;
 
 import android.content.Intent;
 import android.net.Uri;

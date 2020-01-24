@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="1"
     android:versionName="1.0"
-    package="com.example.a2t2019_localizacion_de_guardias_para_denuncias">
+    package="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -24,23 +24,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MapaAdministradorActivity"></activity>
-        <activity android:name=".MapaDelitoActivity" />
-        <activity android:name=".ListaDenuncias" />
-        <activity android:name=".Registra_Admin" />
-        <activity android:name=".Registro_Guardia" />
-        <activity android:name=".Choose_Registro" />
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.MapaAdministradorActivity"></activity>
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.MapaDelitoActivity" />
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.ListaDenuncias" />
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.Registra_Admin" />
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.Registro_Guardia" />
+        <activity android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.Choose_Registro" />
         <activity
-            android:name=".LoginAdminActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.LoginAdminActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginGuardiaActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.LoginGuardiaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Choose_User"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.Choose_User"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Reportar_Denuncia"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.Reportar_Denuncia"
             android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -58,16 +58,16 @@
             android:value="AIzaSyBbGSt2rtm0OSRIMXeXWCsUYZHpAxZVnII" />
 
         <activity
-            android:name=".DashboardActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.DashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegistroActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.RegistroActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.SplashActivity"
             android:theme="@style/SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +76,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias.MainActivity"
             android:theme="@style/AppTheme" />
     </application>
 </manifest>

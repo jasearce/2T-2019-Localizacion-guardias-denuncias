@@ -1,11 +1,10 @@
-package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
+package com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;

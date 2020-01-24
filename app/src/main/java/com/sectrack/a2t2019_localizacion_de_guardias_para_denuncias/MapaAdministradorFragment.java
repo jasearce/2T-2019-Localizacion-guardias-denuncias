@@ -1,7 +1,5 @@
-package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
+package com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
