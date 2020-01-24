@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.a2t2019_localizacion_de_guardias_para_denuncias"
+        applicationId "com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

@@ -103,6 +103,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746362202841:android:5c47bf77f3ce3c227b2cc8",
+        "android_client_info": {
+          "package_name": "com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746362202841-ihuh43g0gndqqt0ttphfk82rk23ee3nd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sectrack.a2t2019_localizacion_de_guardias_para_denuncias",
+            "certificate_hash": "ad184c258e4abb47f34438b821ae5ffaf624f783"
+          }
+        },
+        {
+          "client_id": "746362202841-pg78l0ah0k9erjmknt74f5mmpb26f3f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEBIAtf-j0Eht6Eswt3GEs3He3YtD_vqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746362202841-pg78l0ah0k9erjmknt74f5mmpb26f3f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
