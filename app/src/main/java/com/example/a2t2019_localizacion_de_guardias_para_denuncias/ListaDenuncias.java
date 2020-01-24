@@ -3,12 +3,16 @@ package com.example.a2t2019_localizacion_de_guardias_para_denuncias;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ListaDenuncias extends AppCompatActivity {
     LinearLayout contenedorResultado;
@@ -85,5 +90,31 @@ public class ListaDenuncias extends AppCompatActivity {
 
             }
         });
+
+        checkConnection();
     }
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
+
+    public void checkConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "No hay conexion a Internet",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

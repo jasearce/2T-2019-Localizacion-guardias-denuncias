@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0"
     package="com.example.a2t2019_localizacion_de_guardias_para_denuncias">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -25,7 +27,6 @@
         <activity android:name=".MapaAdministradorActivity"></activity>
         <activity android:name=".MapaDelitoActivity" />
         <activity android:name=".ListaDenuncias" />
-        <activity android:name=".Guardia_Pantalla" />
         <activity android:name=".Registra_Admin" />
         <activity android:name=".Registro_Guardia" />
         <activity android:name=".Choose_Registro" />
@@ -78,5 +79,4 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme" />
     </application>
-
 </manifest>

@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class MapaDelitoActivity extends AppCompatActivity{
     ConstraintLayout descripcion_delito;
@@ -90,7 +95,6 @@ public class MapaDelitoActivity extends AppCompatActivity{
                         for (DataSnapshot denunciaSnapshot : dataSnapshot.getChildren()) {
                             String idb = denunciaSnapshot.child("id").getValue().toString();
                             if(idb.equalsIgnoreCase(id)){
-                                Log.e("ID",id);
                                 Denuncia denuncia=new Denuncia(id,delito,name,fecha,ListaDenuncias.latitud_delito,ListaDenuncias.longitud_delito,area,descripcion,"SI");
                                 databaseD.child("Denuncia").child(id).setValue(denuncia);
                                 Toast.makeText(getApplicationContext(), "Crimen Resuelto",Toast.LENGTH_LONG).show();
@@ -105,6 +109,32 @@ public class MapaDelitoActivity extends AppCompatActivity{
             }
         });
 
+        checkConnection();
 
     }
+
+    /**
+     * Autor: Javier Arce
+     * Metodo para verificar el tipo de conexion en el que se encuentra el dispositivo movil.
+     * Ademas se muestra el mensaje que indica si no se posee conexion a internet.
+     */
+
+    public void checkConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
+        if(null != activeNetwork){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                //Toast.makeText(this, "Wifi: Encendido",Toast.LENGTH_SHORT).show();
+            }
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                Toast.makeText(this, "Datos moviles: Encendido",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "No hay conexion a Internet",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

@@ -87,7 +87,6 @@ public class DashboardActivity extends AppCompatActivity {
                         Location guardiaCentral = new Location(" ");
                         guardiaCentral.setLatitude(-2.148348477036179);
                         guardiaCentral.setLongitude(-79.96371562917663);
-                        Log.e("Distancia: ", String.valueOf(location.distanceTo(guardiaCentral)));
                         if(location.distanceTo(guardiaCentral) > 2000){
                             Toast.makeText(this,"No hay guardias cercanos",Toast.LENGTH_SHORT).show();
                         }
@@ -106,6 +105,7 @@ public class DashboardActivity extends AppCompatActivity {
         switch (menuItem.getItemId()){
             case R.id.nav_home:
                 //Fragment de la pagina principal
+                checkConnection();
                 HomeFragment homeFragment = new HomeFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, homeFragment,"");
@@ -114,6 +114,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             case R.id.nav_map:
                 //Fragment de la pagina de mapas
+                checkConnection();
                 MapaFragment mapaFragment = new MapaFragment();
                 FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction2.replace(R.id.fragment_container, mapaFragment,"");
@@ -122,6 +123,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             case R.id.nav_profile:
                 //Fragment de la pagina de perfil de usuario
+                checkConnection();
                 PerfilFragment perfilFragment = new PerfilFragment();
                 FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction3.replace(R.id.fragment_container, perfilFragment,"");
