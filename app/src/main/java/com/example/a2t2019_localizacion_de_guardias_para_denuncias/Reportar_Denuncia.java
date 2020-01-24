@@ -126,7 +126,7 @@ public class Reportar_Denuncia extends AppCompatActivity {
             int month= date.getMonth()+1;
             int day= date.getDay()+19;
             int year=1900+date.getYear();
-            int hour=date.getHours()-5;
+            int hour=date.getHours();
             int min=date.getMinutes();
             String date_String= String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year)+" Hora: "+ String.valueOf(hour)+":"+String.valueOf(min);
 
