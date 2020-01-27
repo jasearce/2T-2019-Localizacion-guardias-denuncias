@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/frgSeccionDelitos"
         android:layout_width="match_parent"
-        android:layout_height="144dp" >
+        android:layout_height="100dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="448dp"
         android:layout_below="@+id/frgSeccionDelitos"
-        android:layout_marginTop="52dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:id="@+id/seccion1"
@@ -57,8 +57,8 @@
                     android:id="@+id/btnDenunciaRobo"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/md_white_1000_50"
                     android:drawableTop="@drawable/robo_btn"
                     android:text="@string/txtBtnRobo" />
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_below="@+id/seccion1"
-            android:layout_marginTop="82dp"
+            android:layout_marginTop="48dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -103,8 +103,8 @@
                     android:id="@+id/btnDenunciaDrogas"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/md_white_1000_50"
                     android:drawableTop="@drawable/droga_bttn"
                     android:text="@string/txtBtnDrogas" />
